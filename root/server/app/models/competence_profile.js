@@ -1,40 +1,40 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('competence_profile', {
+  return sequelize.define("competence_profile", {
     competence_profile_id: {
-      autoIncrement: true,
+      autoIncrement: 1,
       type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
+      allowNull: 0,
+      primaryKey: 1
     },
     person_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: 1,
       references: {
-        model: 'person',
-        key: 'person_id'
+        model: "person",
+        key: "person_id"
       }
     },
     competence_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: 1,
       references: {
-        model: 'competence',
-        key: 'competence_id'
+        model: "competence",
+        key: "competence_id"
       }
     },
     years_of_experience: {
       type: DataTypes.DECIMAL(4,2),
-      allowNull: true
+      allowNull: 1
     }
   }, {
     sequelize,
-    tableName: 'competence_profile',
-    timestamps: false,
+    tableName: "competence_profile",
+    timestamps: 0,
     indexes: [
       {
         name: "PRIMARY",
-        unique: true,
+        unique: 1,
         using: "BTREE",
         fields: [
           { name: "competence_profile_id" },

@@ -1,3 +1,5 @@
+'use strict'
+
 var DataTypes = require("sequelize").DataTypes;
 var _availability = require("./availability");
 var _competence = require("./competence");
