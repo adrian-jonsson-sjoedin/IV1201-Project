@@ -1,4 +1,4 @@
-const database = require("../model");
+const database = require("../models");
 const competence = database.competence_profile;
 const operator = database.Sequelize.Op;
 

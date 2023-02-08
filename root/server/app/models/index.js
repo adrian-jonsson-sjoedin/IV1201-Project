@@ -20,16 +20,16 @@ const database = {};
 database.Sequelize = Sequelize;
 database.sequelize = sequelize;
 
-/* const init = require("./init-models.js");
-init.initModels(sequelize); */
+const init = require("./init-models.js");
+init.initModels(sequelize);
 
-/* database.models = require("./app/models/availability.js")(sequelize, Sequelize);
-database.models = require("./app/models/competence.js")(sequelize, Sequelize);
-database.models = require("./app/models/competence_profile.js")(sequelize, Sequelize);
-database.models = require("./app/models/person.js")(sequelize, Sequelize);
-database.models = require("./app/models/role.js")(sequelize, Sequelize); */
+database.availability = require("./availability.js")(sequelize, Sequelize);
+database.competence = require("./competence.js")(sequelize, Sequelize);
+database.competence_profile = require("./competence_profile.js")(sequelize, Sequelize);
+database.person = require("./person.js")(sequelize, Sequelize);
+database.role = require("./role.js")(sequelize, Sequelize);
 
-const initModels = require("./init-models");
-database.models = initModels(sequelize);
+/* const initModels = require("./init-models");
+database.models = initModels(sequelize); */
 
 module.exports = database;

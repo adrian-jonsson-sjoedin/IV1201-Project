@@ -15,13 +15,13 @@ function initModels(sequelize) {
   var role = _role(sequelize, DataTypes);
 
   competence_profile.belongsTo(competence, { as: "competence", foreignKey: "competence_id"});
-  competence.hasMany(competence_profile, { as: "competence_profiles", foreignKey: "competence_id"});
+  competence.hasMany(competence_profile, { as: "competence_profile", foreignKey: "competence_id"});
   availability.belongsTo(person, { as: "person", foreignKey: "person_id"});
-  person.hasMany(availability, { as: "availabilities", foreignKey: "person_id"});
+  person.hasMany(availability, { as: "availability", foreignKey: "person_id"});
   competence_profile.belongsTo(person, { as: "person", foreignKey: "person_id"});
-  person.hasMany(competence_profile, { as: "competence_profiles", foreignKey: "person_id"});
+  person.hasMany(competence_profile, { as: "competence_profile", foreignKey: "person_id"});
   person.belongsTo(role, { as: "role", foreignKey: "role_id"});
-  role.hasMany(person, { as: "people", foreignKey: "role_id"});
+  role.hasMany(person, { as: "person", foreignKey: "role_id"});
 
   return {
     availability,

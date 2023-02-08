@@ -1,4 +1,4 @@
-const database = require("../model");
+const database = require("../models");
 const availability = database.availability;
 const operator = database.Sequelize.Op;
 
