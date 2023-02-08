@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom'
 
+/**
+ * View of the login form
+ * @param {String} props.loginInfo - -Message when login fails
+ * @param {function} props.submitLoginRequest - Handles the submited login form
+ */
 export default function LoginView(props){
 
     return (
@@ -10,8 +15,8 @@ export default function LoginView(props){
                 <form onSubmit={ (e) => {e.preventDefault(); props.submitLoginRequest(e);}}>
  
                 <div className="form-outline mb-4">
-                    <input type="email" id="email" className="form-control" required/>
-                    <label className="form-label" htmlFor="email">Email address</label>
+                    <input type="text" id="username" className="form-control" required/>
+                    <label className="form-label" htmlFor="username">Username or Email</label>
                 </div>
 
                 <div className="form-outline mb-4">

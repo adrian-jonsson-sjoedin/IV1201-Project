@@ -1,4 +1,8 @@
-
+/**
+ * View of the registration form.
+ * @param {String} props.registerInfo - message when registation fails
+ * @param {function} props.submitRegisterFrom - Subimits the form with an http POST request 
+ */
 export default function RegisterView(props) {
 
     return (
@@ -8,35 +12,39 @@ export default function RegisterView(props) {
         <h1 className="text-center mb-4">Register</h1>
         <form onSubmit={ (e) => {e.preventDefault(); props.submitRegisterForm(e)}}>
         <div className="form-outline mb-4">
-            <input type="text" id="registerFirstName" className="form-control" required/>
-            <label className="form-label" htmlFor="registerFirstName">First name</label>
+            <input type="text" id="firstName" className="form-control" required/>
+            <label className="form-label" htmlFor="firstName">First name</label>
         </div>
 
         <div className="form-outline mb-4">
-            <input type="text" id="registerLastName" className="form-control" required/>
-            <label className="form-label" htmlFor="registerLastName">Last name</label>
+            <input type="text" id="lastName" className="form-control" required/>
+            <label className="form-label" htmlFor="lastName">Last name</label>
         </div>
 
         <div className="form-outline mb-4">
-            <input type="text" id="registerUsername" className="form-control" required/>
-            <label className="form-label" htmlFor="registerUsername">Username</label>
+            <input type="text" id="userName" className="form-control" required/>
+            <label className="form-label" htmlFor="userName">Username</label>
         </div>
 
         <div className="form-outline mb-4">
-            <input type="email" id="registerEmail" className="form-control" required/>
-            <label className="form-label" htmlFor="registerEmail">Email</label>
-        </div>
-
-
-        <div className="form-outline mb-4">
-            <input type="password" id="registerPassword" className="form-control" required/>
-            <label className="form-label" htmlFor="registerPassword">Password</label>
+            <input type="email" id="email" className="form-control" required/>
+            <label className="form-label" htmlFor="email">Email</label>
         </div>
 
 
         <div className="form-outline mb-4">
-            <input type="password" id="registerRepeatPassword" className="form-control" required/>
-            <label className="form-label" htmlFor="registerRepeatPassword">Repeat password</label>
+            <input type="password" id="password" className="form-control" required/>
+            <label className="form-label" htmlFor="password">Password</label>
+        </div>
+
+
+        <div className="form-outline mb-4">
+            <input type="password" id="repeatPassword" className="form-control" required/>
+            <label className="form-label" htmlFor="repeatPassword">Repeat password</label>
+        </div>
+
+        <div className="text-center text-danger">
+            <p>{props.registerInfo}</p>
         </div>
 
         <div className="row px-2">
