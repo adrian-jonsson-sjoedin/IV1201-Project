@@ -18,7 +18,7 @@ export default function Home(props) {
     }, [currentUser]);
 
     return (
-        <HomeView firstName={currentUser.firstName} lastName={currentUser.lastName}/>
+        <HomeView user={currentUser}/>
     );
 
 }
