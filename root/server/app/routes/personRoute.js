@@ -5,6 +5,8 @@ module.exports = app => {
     
     router.post("/", person.create);
 
+    router.post("/login", person.login);
+
     router.get("/", person.findAll);
 
     router.get("/names", person.findAllWithName);

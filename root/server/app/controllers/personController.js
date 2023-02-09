@@ -41,6 +41,50 @@ exports.create = async (req, res) => {
 };
 
 /**
+ * @function login
+ * Tries to find if a user with matching password exists.
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} Returns the person or an error message if creation fails.
+ */
+exports.login = async (req, res) => {
+    // Validate request
+    if (Object.keys(req.body).length === 0) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+
+    const username = req.body.username
+    const password = req.body.password
+
+    try {
+        const data = await Person.findOne({
+            where: {
+                [sequelizeOperation.and]: [
+                    { username: username },
+                    { password: password }
+                ]
+            }
+        });
+        if (!data) {res.send({
+            status:
+                "Failed"
+            });
+        } else {
+            res.send(data);
+        }      
+        //res.send(data);
+    } catch (err) {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while finding the person."
+        });
+    }
+};
+
+/**
  * @function findOne
  * Finds a Person based on the given id.
  * @param {Object} req - The request object
