@@ -1,24 +1,24 @@
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define("role", {
+  return sequelize.define('role', {
     role_id: {
-      autoIncrement: 1,
+      autoIncrement: true,
       type: DataTypes.INTEGER,
-      allowNull: 0,
-      primaryKey: 1
+      allowNull: false,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING(255),
-      allowNull: 1
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: "role",
-    timestamps: 0,
+    tableName: 'role',
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
-        unique: 1,
+        unique: true,
         using: "BTREE",
         fields: [
           { name: "role_id" },

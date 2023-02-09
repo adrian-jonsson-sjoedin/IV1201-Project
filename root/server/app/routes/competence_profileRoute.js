@@ -1,5 +1,15 @@
 module.exports = app => {
-    const role = require("../controllers/competence_profileController.js");
+    const competence_profile = require("../controllers/competence_profileController.js");
+  
+    var router = require("express").Router();
 
-    console.log("competence_profileRoute not yet implemented.")
-  };
+    router.post("/add", competence_profile.create);
+
+    router.get("/", competence_profile.findAll);
+  
+    router.put("/update", competence_profile.update);
+
+    router.delete("/delete", competence_profile.delete);
+  
+    app.use('/api/competence_profile', router);
+};

@@ -1,36 +1,36 @@
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define("availability", {
+  return sequelize.define('availability', {
     availability_id: {
-      autoIncrement: 1,
+      autoIncrement: true,
       type: DataTypes.INTEGER,
-      allowNull: 0,
-      primaryKey: 1
+      allowNull: false,
+      primaryKey: true
     },
     person_id: {
       type: DataTypes.INTEGER,
-      allowNull: 1,
+      allowNull: true,
       references: {
-        model: "person",
-        key: "person_id"
+        model: 'person',
+        key: 'person_id'
       }
     },
     from_date: {
       type: DataTypes.DATEONLY,
-      allowNull: 1
+      allowNull: true
     },
     to_date: {
       type: DataTypes.DATEONLY,
-      allowNull: 1
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: "availability",
-    timestamps: 0,
+    tableName: 'availability',
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
-        unique: 1,
+        unique: true,
         using: "BTREE",
         fields: [
           { name: "availability_id" },

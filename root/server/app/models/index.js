@@ -1,11 +1,14 @@
 'use strict'
-
+/* 
+Database models generated with sequelize-auto.
+sequelize-auto -o "./app/models" -d iv1201_projectdb -h localhost -u root -p 3306 -x <password> -e mysql
+*/
 const dbConfig = require("../config/dbConfig.js");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
     dialect: dbConfig.dialect,
-    operatorsAliases: false,
+    //operatorsAliases: false,
   
     pool: {
       max: dbConfig.pool.max,
@@ -28,8 +31,5 @@ database.competence = require("./competence.js")(sequelize, Sequelize);
 database.competence_profile = require("./competence_profile.js")(sequelize, Sequelize);
 database.person = require("./person.js")(sequelize, Sequelize);
 database.role = require("./role.js")(sequelize, Sequelize);
-
-/* const initModels = require("./init-models");
-database.models = initModels(sequelize); */
 
 module.exports = database;

@@ -1,52 +1,52 @@
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define("person", {
+  return sequelize.define('person', {
     person_id: {
-      autoIncrement: 1,
+      autoIncrement: true,
       type: DataTypes.INTEGER,
-      allowNull: 0,
-      primaryKey: 1
+      allowNull: false,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING(255),
-      allowNull: 1
+      allowNull: true
     },
     surname: {
       type: DataTypes.STRING(255),
-      allowNull: 1
+      allowNull: true
     },
     pnr: {
       type: DataTypes.STRING(255),
-      allowNull: 1
+      allowNull: true
     },
     email: {
       type: DataTypes.STRING(255),
-      allowNull: 1
+      allowNull: true
     },
     password: {
       type: DataTypes.STRING(255),
-      allowNull: 1
+      allowNull: true
     },
     role_id: {
       type: DataTypes.INTEGER,
-      allowNull: 1,
+      allowNull: true,
       references: {
-        model: "role",
-        key: "role_id"
+        model: 'role',
+        key: 'role_id'
       }
     },
     username: {
       type: DataTypes.STRING(255),
-      allowNull: 1
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: "person",
-    timestamps: 0,
+    tableName: 'person',
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
-        unique: 1,
+        unique: true,
         using: "BTREE",
         fields: [
           { name: "person_id" },
