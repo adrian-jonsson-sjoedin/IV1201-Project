@@ -19,11 +19,6 @@ database.sequelize.sync().then(() => {
     console.log("Database has been connected.");
   });
 
-// In development, you may need to drop existing tables and re-sync database.
-/* database.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-  }); */
-
 
 app.get("/", (req, res) => {
     res.json({ message: "Hello, world!" });

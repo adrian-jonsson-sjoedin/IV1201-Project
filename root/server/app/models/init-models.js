@@ -5,6 +5,12 @@ var _competence_profile = require("./competence_profile");
 var _person = require("./person");
 var _role = require("./role");
 
+/**
+ * @file initModels.js
+ * Initialize the models for the application.
+ * @param {Object} sequelize - Sequelize instance.
+ * @returns {Object} Object containing all the initialized models.
+ */
 function initModels(sequelize) {
   var availability = _availability(sequelize, DataTypes);
   var competence = _competence(sequelize, DataTypes);

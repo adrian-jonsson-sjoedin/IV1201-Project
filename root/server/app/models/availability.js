@@ -1,4 +1,11 @@
 const Sequelize = require('sequelize');
+/**
+ * @module availability
+ * This module exports a Sequelize model for the 'availability' table in the database.
+ * @param {Object} sequelize - The Sequelize instance.
+ * @param {Object} DataTypes - A reference to the data types used by Sequelize.
+ * @returns {Object} - The Sequelize model for the 'availability' table.
+ */
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('availability', {
     availability_id: {

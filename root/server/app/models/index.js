@@ -1,8 +1,11 @@
-'use strict'
 /* 
 Database models generated with sequelize-auto.
 sequelize-auto -o "./app/models" -d iv1201_projectdb -h localhost -u root -p 3306 -x <password> -e mysql
 */
+
+/**
+ * 
+ */
 const dbConfig = require("../config/dbConfig.js");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
