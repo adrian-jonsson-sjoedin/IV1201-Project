@@ -8,7 +8,7 @@ export default function RegisterView(props) {
     return (
         <div className="container">
         <div className="row justify-content-center my-5">
-        <div className="col-6">
+        <div className="col-lg-6">
         <h1 className="text-center mb-4">Register</h1>
         <form onSubmit={ (e) => {e.preventDefault(); props.submitRegisterForm(e)}}>
         <div className="form-outline mb-4">
@@ -24,6 +24,11 @@ export default function RegisterView(props) {
         <div className="form-outline mb-4">
             <input type="text" id="userName" className="form-control" required/>
             <label className="form-label" htmlFor="userName">Username</label>
+        </div>
+
+        <div className="form-outline mb-4">
+            <input type="text" id="prn" className="form-control" pattern="[0-9]{8}-[0-9]{4}" title="YYYYMMDD-XXXX" required/>
+            <label className="form-label" htmlFor="prn">Person number</label>
         </div>
 
         <div className="form-outline mb-4">
@@ -43,9 +48,6 @@ export default function RegisterView(props) {
             <label className="form-label" htmlFor="repeatPassword">Repeat password</label>
         </div>
 
-        <div className="text-center text-danger">
-            <p>{props.registerInfo}</p>
-        </div>
 
         <div className="row px-2">
             <button type="submit" className="btn btn-primary btn-block mb-4">Register</button>

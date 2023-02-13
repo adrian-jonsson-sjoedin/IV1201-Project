@@ -18,6 +18,9 @@ export default function Login(props) {
             console.log("test")
             navigate("/")
         }
+        else {
+            setLoginInfo("Login unsuccessful");
+        }
     }
 
     return (

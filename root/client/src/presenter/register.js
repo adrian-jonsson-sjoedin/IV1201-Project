@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import RegisterSuccessView from "../view/registerSuccess";
 import RegisterView from "../view/registerView";
 
 /**
  * Presenter for registring a new user
  */
 export default function Register() {
-    const [registerInfo, setRegisterInfo] = useState();
+    const [registerInfo, setRegisterInfo] = useState("");
     const navigate = useNavigate();
 
     function registerRequest(formEvent){
@@ -25,7 +26,7 @@ export default function Register() {
         .then(res => {
         
             if(res.register === "OK"){
-                navigate("/login");
+                setRegisterInfo("OK");
             }
             else {
                 setRegisterInfo("Register unsuccessful")
@@ -33,8 +34,8 @@ export default function Register() {
         })
     }
 
-    return (
-        <RegisterView submitRegisterForm={registerRequest} registerInfo={registerInfo}/>
-    );
-
+    if(registerInfo === "OK"){
+        return (<RegisterSuccessView  />);
+    }
+    return (<RegisterView submitRegisterForm={registerRequest} registerInfo={registerInfo}/>);
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { HomeView } from "../view/homeView";
+import { HomeView } from "../view/applicantHomeView";
 
 
 /**
