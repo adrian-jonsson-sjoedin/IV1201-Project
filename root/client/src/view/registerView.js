@@ -12,39 +12,39 @@ export default function RegisterView(props) {
         <h1 className="text-center mb-4">Register</h1>
         <form onSubmit={ (e) => {e.preventDefault(); props.submitRegisterForm(e)}}>
         <div className="form-outline mb-4">
-            <input type="text" id="firstName" className="form-control" required/>
-            <label className="form-label" htmlFor="firstName">First name</label>
+            <input type="text" id="name" className="form-control" name="name" required/>
+            <label className="form-label" htmlFor="name">First name</label>
         </div>
 
         <div className="form-outline mb-4">
-            <input type="text" id="lastName" className="form-control" required/>
-            <label className="form-label" htmlFor="lastName">Last name</label>
+            <input type="text" id="surname" className="form-control" name="surname" required/>
+            <label className="form-label" htmlFor="surname">Last name</label>
         </div>
 
         <div className="form-outline mb-4">
-            <input type="text" id="userName" className="form-control" required/>
-            <label className="form-label" htmlFor="userName">Username</label>
+            <input type="text" id="username" className="form-control" name="username" required/>
+            <label className="form-label" htmlFor="username">Username</label>
         </div>
 
         <div className="form-outline mb-4">
-            <input type="text" id="prn" className="form-control" pattern="[0-9]{8}-[0-9]{4}" title="YYYYMMDD-XXXX" required/>
+            <input type="text" id="prn" className="form-control" pattern="[0-9]{8}-[0-9]{4}" title="YYYYMMDD-XXXX" name="prn" required/>
             <label className="form-label" htmlFor="prn">Person number</label>
         </div>
 
         <div className="form-outline mb-4">
-            <input type="email" id="email" className="form-control" required/>
+            <input type="email" id="email" className="form-control" name="email" required/>
             <label className="form-label" htmlFor="email">Email</label>
         </div>
 
 
         <div className="form-outline mb-4">
-            <input type="password" id="password" className="form-control" required/>
+            <input type="password" id="password" className="form-control" name="password" required/>
             <label className="form-label" htmlFor="password">Password</label>
         </div>
 
 
         <div className="form-outline mb-4">
-            <input type="password" id="repeatPassword" className="form-control" required/>
+            <input type="password" id="repeatPassword" className="form-control" name="repeatPassword" required/>
             <label className="form-label" htmlFor="repeatPassword">Repeat password</label>
         </div>
 

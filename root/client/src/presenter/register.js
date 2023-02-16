@@ -11,15 +11,10 @@ export default function Register() {
     const navigate = useNavigate();
 
     function registerRequest(formEvent){
+        var formData = new FormData(formEvent.target);
         fetch("http://localhost:9000/register" , {
             method: "POST",
-            body: JSON.stringify({
-                firstName: formEvent.target.firstName.value,
-                lastName: formEvent.target.lastName.value,
-                userName: formEvent.target.userName.value,
-                email: formEvent.target.email.value,
-                password: formEvent.target.password.value
-            }),
+            body: JSON.stringify(Object.fromEntries(formData)),
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
         .then(res => res.json())
