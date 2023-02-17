@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
  * @param {String} props.loginInfo - -Message when login fails
  * @param {function} props.submitLoginRequest - Handles the submited login form
  */
-export default function LoginView(props){
+export default function LoginForm(props){
 
     return (
         <div className="container">

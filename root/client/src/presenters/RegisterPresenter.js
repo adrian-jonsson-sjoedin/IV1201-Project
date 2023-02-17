@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import RegisterSuccessView from "../view/registerSuccess";
-import { createApplicantRequest } from "../model/person";
-import RegisterView from "../view/registerView";
+import RegisterSuccess from "../views/RegisterSuccess";
+import { createApplicantRequest } from "../models/person";
+import RegisterForm from "../views/RegisterForm";
 
 /**
  * Presenter for registring a new user
@@ -16,8 +16,7 @@ export default function Register(props) {
         console.log('Result from createApplicantRequest: ', result);
         if (result === "OK") {
             console.log("Login Successful") // remove this before publishing app
-            setRegisterInfo("Register Successful")
-            navigate("/login")
+            setRegisterInfo("OK")
         }else {
             setRegisterInfo("Register unsuccessful")
         }
@@ -47,8 +46,11 @@ export default function Register(props) {
     //     })
     // }
 
+    if(registerInfo === "OK"){
+        return (<RegisterSuccess />);
+    }
     return (
-        <RegisterView submitRegisterForm={register} registerInfo={registerInfo}/>
+        <RegisterForm submitRegisterForm={register} registerInfo={registerInfo}/>
     );
 
 }

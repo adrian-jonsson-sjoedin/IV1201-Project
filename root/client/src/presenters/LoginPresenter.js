@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginView from "../view/loginView";
-import { loginRequest } from "../model/person";
+import LoginForm from "../views/LoginForm";
+import { loginRequest } from "../models/person";
 
 /**
  * Login presenter
@@ -21,12 +21,9 @@ export default function Login(props) {
         }else {
             setLoginInfo("Login unsuccessful")
         }
-        else {
-            setLoginInfo("Login unsuccessful");
-        }
     }
 
     return (
-        <LoginView submitLoginRequest={login} loginInfo={loginInfo} />
+        <LoginForm submitLoginRequest={login} loginInfo={loginInfo} />
     );
 }

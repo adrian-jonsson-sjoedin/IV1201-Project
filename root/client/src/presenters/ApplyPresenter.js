@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Experience, Availability, ConfimData } from "../view/applicationView";
+import { Competence, AvailabilityForm, ConfimData } from "../views";
 
 export default function Apply() {
     const [page, setPage] = useState(0);
@@ -8,15 +8,15 @@ export default function Apply() {
     const view = () => {
         switch(page){
             case 0:
-                return <Experience nextPage={handleSubmit}/>;
+                return <Competence nextPage={handleSubmit}/>;
             case 1:
                 return <ConfimData data={application} nextPage={handleSubmit} setPage={setPage} page={page}/>;
             case 2:
-                return <Availability nextPage={handleSubmit} setPage={setPage} page={page}/>;
+                return <AvailabilityForm nextPage={handleSubmit} setPage={setPage} page={page}/>;
             case 3:
                 return <ConfimData data={application} nextPage={handleSubmit} setPage={setPage} page={page}/>;
             default:
-                return <Experience nextPage={handleSubmit}/>;
+                return <Competence nextPage={handleSubmit}/>;
         }
     }
 
@@ -57,12 +57,12 @@ export default function Apply() {
                 console.log(competenceProfiles)
             }
             if(formData.lotteries){
-                competenceProfiles =  [...competenceProfile,
+                competenceProfiles =  [...competenceProfiles,
                     {competence: 2, yearsOfExperience: formData.lotteriesExperience}]
                 console.log(competenceProfiles)
             }
             if(formData.rollerCoasterOperation){
-                competenceProfiles =  [...competenceProfile,
+                competenceProfiles =  [...competenceProfiles,
                     {competence: 3, yearsOfExperience: formData.rollerCoasterExperiences}]
                 console.log(competenceProfiles)
             }

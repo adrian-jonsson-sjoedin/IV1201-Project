@@ -3,7 +3,7 @@
  * @param {String} props.registerInfo - message when registation fails
  * @param {function} props.submitRegisterFrom - Subimits the form with an http POST request 
  */
-export default function RegisterView(props) {
+export default function RegisterForm(props) {
 
     return (
         <div className="container">

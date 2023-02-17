@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, useNavigate } from "react-router-dom";
-import Apply from "./apply";
+import { HomeView } from "../views/ApplicantHomeView";
+import Apply from "./ApplyPresenter";
 
 
 /**
@@ -10,16 +11,16 @@ import Apply from "./apply";
 export default function Home(props) {
     const [currentUser, ] = useState(props.model.currentUser);
     const navigate = useNavigate();
-    /*
+    
     useEffect( () => {
         if(!currentUser){
             navigate("/login");
         }
     }, [currentUser]);
-    */
+    
     return (
-        //<HomeView user={currentUser}/>
-        <Apply />
+        <HomeView user={currentUser}/>
+        //<Apply />
     );
 
 }
