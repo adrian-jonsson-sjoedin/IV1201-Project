@@ -12,7 +12,7 @@ function App() {
     <Routes>
       <Route path="/"  element={<Home model={model}/>}/>
       <Route path="/login" element={<Login model={model}/>} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/register" element={<Register model={model}/>} />
     </Routes>
   );
 }
