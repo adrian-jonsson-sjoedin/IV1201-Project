@@ -51,22 +51,22 @@ export default function Apply() {
     }
 
     function validateCompetence(formData) {
-        var competenceProfile = [];
+        var competenceProfiles = [];
             if(formData.ticketSales){
-                competenceProfile = [{competence: 1, yearsOfExperience: formData.ticketSalesExperience}]
-                console.log(competenceProfile)
+                competenceProfiles = [{competence: 1, yearsOfExperience: formData.ticketSalesExperience}]
+                console.log(competenceProfiles)
             }
             if(formData.lotteries){
-                competenceProfile =  [...competenceProfile,
+                competenceProfiles =  [...competenceProfile,
                     {competence: 2, yearsOfExperience: formData.lotteriesExperience}]
-                console.log(competenceProfile)
+                console.log(competenceProfiles)
             }
             if(formData.rollerCoasterOperation){
-                competenceProfile =  [...competenceProfile,
+                competenceProfiles =  [...competenceProfile,
                     {competence: 3, yearsOfExperience: formData.rollerCoasterExperiences}]
-                console.log(competenceProfile)
+                console.log(competenceProfiles)
             }
-            setApplication({competenceProfile})
+            setApplication({competenceProfiles})
     }
 
     function validateAvailability(formData) {
