@@ -17,7 +17,7 @@ export default function CompetenceForm(props){
                     <label className="form-label" htmlFor="ticketSales">Ticket sales</label>
                     
                 </div>
-                <input onChange={ (e) => {console.log(e.target.value)}} className="form-range" type="range" min="1" max="10" id="ticketSalesExperience" name="ticketSalesExperience"/>
+                <input className="form-range" type="range" min="1" max="10" id="ticketSalesExperience" name="ticketSalesExperience"/>
             </div>
 
             <div className="form-control mb-4">

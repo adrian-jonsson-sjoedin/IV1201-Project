@@ -3,6 +3,8 @@
  */
 export { default as CompetenceForm} from "./CompetenceForm";
 export { default as ConfimData} from './ConfimData';
+export { default as ConfirmCompetence} from './ConfirmCompetence';
+export { default as ConfirmAvailability} from './ConfirmAvailability';
 export { default as AvailabilityForm} from './AvailabilityForm';
 
 /**
