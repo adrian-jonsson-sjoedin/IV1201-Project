@@ -7,20 +7,23 @@ import { ApplicantHomeView, RecruiterHomeView } from "../views";
  * @param {Object} props.model - The app model 
  */
 export default function Home(props) {
-
+const currentUser = props.model.currentUser
+   
     const Loader = () => {
-        if(!props.currentUser){
+        if(!currentUser){
             return <Navigate to='/login' />
         }
-        return false
+        return null
     }
 
     function HomeView() {
-        if(props.currentUser.role_id === 1){
-            return <ApplicantHomeView user={props.currentUser}/>
+        console.log(currentUser)
+        if(currentUser.role_id === 1){
+            console.log(currentUser)
+            return <ApplicantHomeView user={currentUser}/>
         }
-        if(props.currentUser.role_id === 2){
-            return <RecruiterHomeView user={props.currentUser} />
+        if(currentUser.role_id === 2){
+            return <RecruiterHomeView user={currentUser} />
         }
     }
     
