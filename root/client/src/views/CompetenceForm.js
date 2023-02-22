@@ -1,4 +1,9 @@
-export default function Competence(props){
+/**
+ * Form where the user can enter their compentece.
+ * @param {function} props.nextPage - function the stores the form data and send the user to the next page 
+ * @returns View component - form
+ */
+export default function CompetenceForm(props){
     
     return(
         <div className="container">

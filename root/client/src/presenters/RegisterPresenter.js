@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import RegisterSuccess from "../views/RegisterSuccess";
 import { createApplicantRequest } from "../models/person";
 import RegisterForm from "../views/RegisterForm";
 
 /**
  * Presenter for registring a new user
+ * @param {Object} props.model - The model
  */
 export default function Register(props) {
     const [registerInfo, setRegisterInfo] = useState();
-    const navigate = useNavigate();
 
     async function register(formEvent) {
+
+        const formData = Object.fromEntries(new FormData(formEvent.taget)) //Full form data as JSON
+        console.log(formData) // remove before publishing
+
         const result = await createApplicantRequest(formEvent, props.model)
         console.log('Result from createApplicantRequest: ', result);
         if (result === "OK") {

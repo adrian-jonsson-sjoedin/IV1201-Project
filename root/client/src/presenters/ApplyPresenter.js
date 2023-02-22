@@ -1,14 +1,27 @@
 import { useState } from "react";
-import { Competence, AvailabilityForm, ConfimData } from "../views";
+import { redirect } from "react-router-dom";
+import { CompetenceForm, AvailabilityForm, ConfimData } from "../views";
 
-export default function Apply() {
+export default function Apply(props) {
     const [page, setPage] = useState(0);
     const [application, setApplication] = useState();
+    
+
+    const loader = () => {
+        const user = props.model.currentUser
+        if(!user){
+            redirect('/')
+        }
+        if(user.role_id !== 1){
+            redirect('/')
+        }
+        return null 
+    }
 
     const view = () => {
         switch(page){
             case 0:
-                return <Competence nextPage={handleSubmit}/>;
+                return <CompetenceForm nextPage={handleSubmit}/>;
             case 1:
                 return <ConfimData data={application} nextPage={handleSubmit} setPage={setPage} page={page}/>;
             case 2:
@@ -16,7 +29,7 @@ export default function Apply() {
             case 3:
                 return <ConfimData data={application} nextPage={handleSubmit} setPage={setPage} page={page}/>;
             default:
-                return <Competence nextPage={handleSubmit}/>;
+                return <CompetenceForm nextPage={handleSubmit}/>;
         }
     }
 
@@ -51,22 +64,22 @@ export default function Apply() {
     }
 
     function validateCompetence(formData) {
-        var competenceProfiles = [];
+        var competence_profile = [];
             if(formData.ticketSales){
-                competenceProfiles = [{competence: 1, yearsOfExperience: formData.ticketSalesExperience}]
-                console.log(competenceProfiles)
+                competence_profile = [{competence: 1, years_of_experience: formData.ticketSalesExperience}]
+                console.log(competence_profile)
             }
             if(formData.lotteries){
-                competenceProfiles =  [...competenceProfiles,
-                    {competence: 2, yearsOfExperience: formData.lotteriesExperience}]
-                console.log(competenceProfiles)
+                competence_profile =  [...competence_profile,
+                    {competence: 2, years_of_experience: formData.lotteriesExperience}]
+                console.log(competence_profile)
             }
             if(formData.rollerCoasterOperation){
-                competenceProfiles =  [...competenceProfiles,
-                    {competence: 3, yearsOfExperience: formData.rollerCoasterExperiences}]
-                console.log(competenceProfiles)
+                competence_profile =  [...competence_profile,
+                    {competence: 3, years_of_experience: formData.rollerCoasterExperiences}]
+                console.log(competence_profile)
             }
-            setApplication({competenceProfiles})
+            setApplication({competence_profile})
     }
 
     function validateAvailability(formData) {
@@ -76,7 +89,7 @@ export default function Apply() {
     
     return (
         <>
-            {view()}
+            {loader() || view()}
         </>
     );
 }

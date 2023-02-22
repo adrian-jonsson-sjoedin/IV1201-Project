@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Route, useNavigate } from "react-router-dom";
-import { HomeView } from "../views/ApplicantHomeView";
-import Apply from "./ApplyPresenter";
+import { useNavigate } from "react-router-dom";
+import { ApplicantHomeView, RecruiterHomeView } from "../views";
 
 
 /**
@@ -17,10 +16,18 @@ export default function Home(props) {
             navigate("/login");
         }
     }, [currentUser]);
+
+    function HomeView() {
+        if(currentUser.role_id === 1){
+            return <ApplicantHomeView user={props.currentUser}/>
+        }
+        if(currentUser.role_id === 2){
+            return <RecruiterHomeView user={props.currentUser} />
+        }
+    }
     
     return (
-        <HomeView user={currentUser}/>
-        //<Apply />
+        <HomeView />
     );
 
 }

@@ -1,3 +1,9 @@
+/**
+ * View component meant to show the applicaiton data back to the user
+ * with the ability the go back and edit previously input data
+ * @param {Object} props.data - application object containing competence profile and availability
+ * @returns View component
+ */
 export default function ConfimData(props) {
     return (
         <div className="container">
