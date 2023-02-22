@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginView from "../view/loginView";
-import { loginRequest } from "../model/person";
+import LoginForm from "../views/LoginForm";
+import { loginRequest } from "../models/Person";
 
 /**
  * Login presenter
@@ -13,14 +13,17 @@ export default function Login(props) {
 
     async function login(formEvent) {
         const result = await loginRequest(formEvent, props.model)
-        console.log(result);
+        console.log('Result from loginRequest: ', result); // remove this before publishing app
         if (result === "OK") {
-            console.log("test")
+            console.log("Login Successful") // remove this before publishing app
+            setLoginInfo("Login Successful")
             navigate("/")
+        }else {
+            setLoginInfo("Login unsuccessful")
         }
     }
 
     return (
-        <LoginView submitLoginRequest={login} loginInfo={loginInfo} />
+        <LoginForm submitLoginRequest={login} loginInfo={loginInfo} />
     );
 }
