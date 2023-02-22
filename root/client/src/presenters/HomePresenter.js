@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, } from "react-router-dom";
 import { ApplicantHomeView, RecruiterHomeView } from "../views";
 
 
@@ -8,26 +7,27 @@ import { ApplicantHomeView, RecruiterHomeView } from "../views";
  * @param {Object} props.model - The app model 
  */
 export default function Home(props) {
-    const [currentUser, ] = useState(props.model.currentUser);
-    const navigate = useNavigate();
-    
-    useEffect( () => {
-        if(!currentUser){
-            navigate("/login");
+
+    const Loader = () => {
+        if(!props.currentUser){
+            return <Navigate to='/login' />
         }
-    }, [currentUser]);
+        return false
+    }
 
     function HomeView() {
-        if(currentUser.role_id === 1){
+        if(props.currentUser.role_id === 1){
             return <ApplicantHomeView user={props.currentUser}/>
         }
-        if(currentUser.role_id === 2){
+        if(props.currentUser.role_id === 2){
             return <RecruiterHomeView user={props.currentUser} />
         }
     }
     
     return (
-        <HomeView />
+        <>
+            {<Loader/> || <HomeView />}
+        </>
     );
 
 }
