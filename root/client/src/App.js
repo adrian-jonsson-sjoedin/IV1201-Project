@@ -10,11 +10,11 @@ import { ApplicantRoute } from "./routes";
 
 function App() {
   const [model, ] = useState(new Model());
-  model.currentUser = {role_id: 1}; //for testing
+   //for testing
   return (
     <Routes>
       <Route path="/"  element={<Home model={model}/>} />
-      <Route element={<ApplicantRoute currentUser={model.currentUser}/>}>
+      <Route element={<ApplicantRoute model={model}/>}>
         <Route path="/apply" element={<Apply model={model}/>}/>
       </Route>
       <Route path="/login" element={<Login model={model}/>} />

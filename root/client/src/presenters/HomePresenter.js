@@ -29,7 +29,7 @@ export default function Home(props) {
     
     return (
         <>
-            {<Loader/> || <HomeView />}
+            {Loader() || <HomeView />}
         </>
     );
 
