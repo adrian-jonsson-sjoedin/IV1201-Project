@@ -9,7 +9,6 @@ import { ApplicantHomeView, RecruiterHomeView } from "../views";
 export default function Home(props) {
     const currentUser = props.model.currentUser
     
-
     const Loader = () => {
         if(!currentUser){
             return <Navigate to='/login' />
