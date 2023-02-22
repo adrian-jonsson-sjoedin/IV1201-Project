@@ -29,7 +29,7 @@ const currentUser = props.model.currentUser
     
     return (
         <>
-            {<Loader/> || <HomeView />}
+            {Loader() || <HomeView />}
         </>
     );
 
