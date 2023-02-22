@@ -1,6 +1,6 @@
 import { useState } from "react";
 import RegisterSuccess from "../views/RegisterSuccess";
-import { createApplicantRequest } from "../models/person";
+import { createApplicantRequest } from "../models/Person";
 import RegisterForm from "../views/RegisterForm";
 
 /**

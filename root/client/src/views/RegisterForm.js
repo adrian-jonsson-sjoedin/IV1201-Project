@@ -27,8 +27,8 @@ export default function RegisterForm(props) {
         </div>
 
         <div className="form-outline mb-4">
-            <input type="text" id="prn" className="form-control" pattern="[0-9]{8}-[0-9]{4}" title="YYYYMMDD-XXXX" name="prn" required/>
-            <label className="form-label" htmlFor="prn">Person number</label>
+            <input type="text" id="pnr" className="form-control" pattern="[0-9]{8}-[0-9]{4}" title="YYYYMMDD-XXXX" name="pnr" required/>
+            <label className="form-label" htmlFor="pnr">Person number</label>
         </div>
 
         <div className="form-outline mb-4">

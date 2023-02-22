@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../views/LoginForm";
-import { loginRequest } from "../models/person";
+import { loginRequest } from "../models/Person";
 
 /**
  * Login presenter
