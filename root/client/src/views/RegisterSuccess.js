@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
  * View that informs the user that the registration was successful
  * and links them to the login page.
  */
-export default function RegisterSuccessView(){
+export default function RegisterSuccess(){
     
     return (
         <div className="container" >

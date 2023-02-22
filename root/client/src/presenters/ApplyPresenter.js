@@ -1,22 +1,39 @@
 import { useState } from "react";
-import { Competence, AvailabilityForm, ConfimData } from "../views";
+import { redirect } from "react-router-dom";
+import { CompetenceForm, 
+        AvailabilityForm, 
+        ConfimData, 
+        ConfirmCompetence, 
+        ConfirmAvailability} from "../views";
 
-export default function Apply() {
+export default function Apply(props) {
     const [page, setPage] = useState(0);
     const [application, setApplication] = useState();
+    
+
+    const loader = () => {
+        const user = props.model.currentUser
+        if(!user){
+            redirect('/')
+        }
+        if(user.role_id !== 1){
+            redirect('/')
+        }
+        return null 
+    }
 
     const view = () => {
         switch(page){
             case 0:
-                return <Competence nextPage={handleSubmit}/>;
+                return <CompetenceForm nextPage={handleSubmit}/>;
             case 1:
-                return <ConfimData data={application} nextPage={handleSubmit} setPage={setPage} page={page}/>;
+                return <ConfirmCompetence competenceProfile={application.competence_profile} nextPage={handleSubmit} setPage={setPage} page={page}/>;
             case 2:
                 return <AvailabilityForm nextPage={handleSubmit} setPage={setPage} page={page}/>;
             case 3:
-                return <ConfimData data={application} nextPage={handleSubmit} setPage={setPage} page={page}/>;
+                return <ConfirmAvailability availability={application.availability} nextPage={handleSubmit} setPage={setPage} page={page}/>;
             default:
-                return <Competence nextPage={handleSubmit}/>;
+                return <CompetenceForm nextPage={handleSubmit}/>;
         }
     }
 
@@ -38,11 +55,10 @@ export default function Apply() {
             validateCompetence(formData)
             setPage(page + 1)
         }
-        if(page === 2) {
+        else if(page === 2) {
             validateAvailability(formData)
-            setPage(page + 1)
         }
-        if(page === 3){
+        else if(page === 3){
             submitApplication()
         }
         else {
@@ -51,32 +67,39 @@ export default function Apply() {
     }
 
     function validateCompetence(formData) {
-        var competenceProfiles = [];
+        var competence_profile = [];
             if(formData.ticketSales){
-                competenceProfiles = [{competence: 1, yearsOfExperience: formData.ticketSalesExperience}]
-                console.log(competenceProfiles)
+                competence_profile = [{competence: 1, years_of_experience: formData.ticketSalesExperience}]
             }
             if(formData.lotteries){
-                competenceProfiles =  [...competenceProfiles,
-                    {competence: 2, yearsOfExperience: formData.lotteriesExperience}]
-                console.log(competenceProfiles)
+                competence_profile =  [...competence_profile,
+                    {competence: 2, years_of_experience: formData.lotteriesExperience}]
             }
             if(formData.rollerCoasterOperation){
-                competenceProfiles =  [...competenceProfiles,
-                    {competence: 3, yearsOfExperience: formData.rollerCoasterExperiences}]
-                console.log(competenceProfiles)
+                competence_profile =  [...competence_profile,
+                    {competence: 3, years_of_experience: formData.rollerCoasterExperiences}]
             }
-            setApplication({competenceProfiles})
+            setApplication({competence_profile})
     }
 
     function validateAvailability(formData) {
-        var availability = [formData];
-        setApplication({...application, availability})  
+        if(!formData.from_date || !formData.to_date){
+            alert('fill in the availability period')
+            return;
+        }
+
+        var availability = [formData]
+        if(application.availability){
+            availability = [...application.availability, formData]
+        }
+        console.log('set ava')
+        setApplication({...application, availability})
+        setPage(page + 1)  
     }
     
     return (
         <>
-            {view()}
+            {loader() || view()}
         </>
     );
 }

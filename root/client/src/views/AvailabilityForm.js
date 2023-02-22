@@ -1,5 +1,10 @@
+/**
+ * A form where the applicant can enter thier availability periods
+ * @param {function} props.nextPage - function the stores the form data and send the user to the next page  
+ * @returns 
+ */
 export default function AvailabilityForm(props) {
-
+    
     return (
         <div className="container">
         <div className="row justify-content-center my-5">
@@ -9,9 +14,9 @@ export default function AvailabilityForm(props) {
             <form onSubmit={ (e) => {props.nextPage(e)}}>
 
                 <div className="input-group date justify-content-center mb-4">
-                    <input type="date" name="fromDate"></input>
+                    <input type="date" name="from_date"></input>
                     <span className="input-group-text" id="seperator">--</span>
-                    <input type="date" name="toDate"></input>
+                    <input type="date" name="to_date"></input>
                 </div>
 
                 <div className="row px-2">

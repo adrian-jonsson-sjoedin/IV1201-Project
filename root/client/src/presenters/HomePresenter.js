@@ -1,26 +1,36 @@
-import { useEffect, useState } from "react";
-import { Route, useNavigate } from "react-router-dom";
-import { HomeView } from "../views/ApplicantHomeView";
-import Apply from "./ApplyPresenter";
+import { Navigate, } from "react-router-dom";
+import { ApplicantHomeView, RecruiterHomeView } from "../views";
 
 
 /**
  * The home page, currently only redirects to login page when not logged in
- * @param {Object} props.model - The app model 
+ * @param {Object} props.currentUser - The current logged in user
  */
 export default function Home(props) {
-    const [currentUser, ] = useState(props.model.currentUser);
-    const navigate = useNavigate();
+    const currentUser = props.model.currentUser
     
-    useEffect( () => {
+    const Loader = () => {
         if(!currentUser){
-            navigate("/login");
+            return <Navigate to='/login' />
         }
-    }, [currentUser]);
+        return null
+    }
+
+    function HomeView() {
+        console.log(currentUser)
+        if(currentUser.role_id === 1){
+            console.log(currentUser)
+            return <ApplicantHomeView user={currentUser}/>
+        }
+        if(currentUser.role_id === 2){
+            return <RecruiterHomeView user={currentUser} />
+        }
+    }
     
     return (
-        <HomeView user={currentUser}/>
-        //<Apply />
+        <>
+            {Loader() || <HomeView />}
+        </>
     );
 
 }
