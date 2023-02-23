@@ -2,6 +2,7 @@
  * Sends a login request to the server and updates the model with the returned 
  * user if login succeed.
  * @async 
+ * @function loginRequest
  * @param {Event} loginFormEvent - The event object from the login form submission.
  * @param {Model} model - The model used in the app that will be updated with current user data.
  * @returns {Promise<string>} A Promise that resolves to "OK" if the request is successful, or "Failed" otherwise.
@@ -29,6 +30,7 @@ async function loginRequest(loginFormEvent, model) {
         }
     } catch (error) {
         console.error(error);
+        throw new Error("An error occurred during the login request");
     }
 }
 
@@ -57,7 +59,7 @@ async function createApplicantRequest(registerFormEvent, model) {
         const response = await fetch("http://localhost:8080/api/person/", {
             method: "POST",
             body: JSON.stringify(requestBody),
-            headers: { "Content-type": "application/json: charset=UTF-8" },
+            headers: { "Content-type": "application/json; charset=UTF-8" },
         });
         const responseData = await response.json();
         console.log('Response data: ', responseData); // remove this before publishing app
@@ -71,6 +73,7 @@ async function createApplicantRequest(registerFormEvent, model) {
         }
     } catch (error) {
         console.error(error);
+        throw new Error("An error occurred with the create applicant request.");
     }
 }
 
