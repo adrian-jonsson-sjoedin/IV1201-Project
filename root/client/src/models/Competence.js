@@ -11,7 +11,7 @@ async function fetchCompetenceList() {
     try {
         const response = await fetch('http://localhost:8080/api/competence/');
         const responseData = await response.json();
-        console.log('Response data for fetching the list of competences: ', responseData);
+        console.log('Response data for fetching the list of competences: ', responseData);// remove this before publishing app
         if (responseData.status !== 500) {
             const competences = responseData.map(res => ({
                 competence_id: res.competence_id,
