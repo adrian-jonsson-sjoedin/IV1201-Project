@@ -18,6 +18,8 @@ exports.create = async (req, res) => {
         return;
     }
 
+    console.log(req);
+
     // Create a new Person
     const newPerson = {
         name: req.body.name,
@@ -35,7 +37,7 @@ exports.create = async (req, res) => {
     } catch (err) {
         res.status(500).send({
             message:
-                err.message || "Some error occurred while creating the person."
+                err.message || "Some error occurred while creating the Person."
         });
     }
 };
@@ -75,36 +77,10 @@ exports.login = async (req, res) => {
         } else {
             res.send(data);
         }      
-        //res.send(data);
     } catch (err) {
         res.status(500).send({
             message:
-                err.message || "Some error occurred while finding the person."
-        });
-    }
-};
-
-/**
- * @function findOne
- * Finds a Person based on the given id.
- * @param {Object} req - The request object
- * @param {Object} res - The response object
- * @returns {Object} The found Person or an error message if it fails.
- */
-exports.findOne = async (req, res) => {
-    const id = req.param.id;
-
-    try {
-        const data = await Person.findOne({
-            where: {
-                id: id
-            }
-        });
-        res.send(data);
-    } catch (err) {
-        res.status(500).send({
-            message:
-                err.message || `Error finding Person with id=${id}.`
+                err.message || "Some error occurred while finding the Person."
         });
     }
 };
@@ -117,13 +93,38 @@ exports.findOne = async (req, res) => {
  * @returns {Object} The Persons or an error message if it fails.
  */
 exports.findAll = async (req, res) => {
+  try {
+      const data = await Person.findAll();
+      res.send(data);
+  } catch (err) {
+      res.status(500).send({
+          message:
+              err.message || "Error finding Persons."
+      });
+  }
+};
+
+/**
+ * @function findById
+ * Finds a Person based on the given person_id.
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} The found Person or an error message if it fails.
+ */
+exports.findById = async (req, res) => {
+    const person_id = req.param.person_id;
+
     try {
-        const data = await Person.findAll();
+        const data = await Person.findOne({
+            where: {
+                person_id: person_id
+            }
+        });
         res.send(data);
     } catch (err) {
         res.status(500).send({
             message:
-                err.message || "Error finding Persons."
+                err.message || `Error finding Person with person_id=${person_id}.`
         });
     }
 };
@@ -160,14 +161,39 @@ exports.findAllWithName = async (req, res) => {
     } catch (err) {
         res.status(500).send({
             message:
-                err.message || "Error finding Roles."
+                err.message || "Error finding Person."
         });
     }
 };
 
 /**
+ * @function findByPnr
+ * Finds a Person based on the given pnr.
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} The found Person or an error message if it fails.
+ */
+exports.findByPnr = async (req, res) => {
+  const pnr = req.body.pnr;
+
+  try {
+      const data = await Person.findOne({
+          where: {
+              pnr: pnr
+          }
+      });
+      res.send(data);
+  } catch (err) {
+      res.status(500).send({
+          message:
+              err.message || `Error finding Person with pnr=${pnr}.`
+      });
+  }
+};
+
+/**
  * @function update
- * Updates the password for a Person based on the given username and password.
+ * Updates the Person with specified person_id.
  * @param {Object} req - The request object
  * @param {Object} res - The response object
  * @returns {Object} A message indicating the password was updated successfully or an error message if update fails.
@@ -180,64 +206,71 @@ exports.update = async (req, res) => {
         });
         return;
     }
-
-    const id = req.param.id;
-    const newPassword = req.body.newPassword;
+    
+    const person_id = req.body.person_id;
+    const person = {
+        name: req.body.name,
+        surname: req.body.surname,
+        pnr: req.body.pnr,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password
+    }
 
     try {
-        const data = await Person.update({ password: newPassword }, {
+        const data = await Person.update(person, {
             where: {
-                id: id
+                person_id: person_id
             }
         });
         if (data == 1) {
             res.send({
-                message: "Password was updated successfully."
+                message: "Person was updated successfully."
             });
         } 
         else {
             res.send({
-                message: `Cannot update password for Person with id=${id}. Maybe the Person was not found or req.body is empty!`
+                message: `Cannot update Person with person_id=${person_id}. Maybe the Person was not found or req.body is empty!`
             });
         }
     } catch (err) {
         res.status(500).send({
             message: 
-                err.message || `Error updating password for Person with id=${id}.`
+                err.message || `Error updating Person with person_id=${person_id}.`
         });
     }
 };
 
 /**
  * @function delete
- * Deletes a Person based on the given username and password.
+ * Deletes a Person based on the given person_id.
  * @param {Object} req - The request object
  * @param {Object} res - The response object
  * @returns {Object} A message indicating the Person was deleted successfully or an error message if delete fails.
  */
 exports.delete = async (req, res) => {
-    const id = req.param.id;
+    const person_id = req.param.person_id;
 
     try {
         const data = await Person.destroy({
             where: {
-                id: id
+                person_id: person_id
             }
         });
         if (data == 1) {
             res.send({
-                message: "Password was deleted successfully."
+                message: "Person deleted successfully."
             });
         } 
         else {
             res.send({
-                message: `Cannot delete Person with id=${id}. Maybe the Person was not found or req.body is empty!`
+                message: `Cannot delete Person with person_id=${person_id}. Maybe the Person was not found or req.body is empty!`
             });
         }
     } catch (err) {
         res.status(500).send({
             message: 
-                err.message || `Error deleting Person with id=${id}.`
+                err.message || `Error deleting Person with person_id=${person_id}.`
         });
     }
 };
