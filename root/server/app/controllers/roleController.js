@@ -80,20 +80,20 @@ exports.update = async (req, res) => {
         } 
         else {
             res.send({
-                message: `Cannot update name for Role ${name}. Maybe the Role was not found or req.body is empty!`
+                message: `Cannot update name for Role with role_id=${role_id}. Maybe the Role was not found or req.body is empty!`
             });
         }
     } catch (err) {
         res.status(500).send({
             message: 
-                err.message || "Error updating name for Role " + name
+                err.message || `Error updating name for Role with role_id=${role_id}.`
         });
     }
 };
 
 /**
  * @function delete
- * Deletes a Role based on the given username and password.
+ * Deletes a Role based on the given role_id.
  * @param {Object} req - The request object
  * @param {Object} res - The response object
  * @returns {Object} A message indicating the Role was deleted successfully or an error message if delete fails.
@@ -107,12 +107,12 @@ exports.delete = async (req, res) => {
         return;
     }
 
-    const name = req.body.name;
+    const role_id = req.body.role_id;
 
     try {
         const data = await Role.destroy({
             where: {
-                name: name
+              role_id: role_id
             }
         });
         if (data == 1) {
@@ -122,13 +122,13 @@ exports.delete = async (req, res) => {
         } 
         else {
             res.send({
-                message: `Cannot delete Role ${name}. Maybe the Role was not found or req.body is empty!`
+                message: `Cannot delete Role with role_id=${role_id}. Maybe the Role was not found or req.body is empty!`
             });
         }
     } catch (err) {
         res.status(500).send({
             message: 
-                err.message || "Error deleting Role " + name
+                err.message || `Error deleting name for Role with role_id=${role_id}.`
         });
     }
 };
