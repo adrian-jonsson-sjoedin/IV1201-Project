@@ -18,6 +18,8 @@ exports.create = async (req, res) => {
         return;
     }
 
+    console.log(req);
+
     // Create a new Person
     const newPerson = {
         name: req.body.name,
@@ -172,7 +174,7 @@ exports.findAllWithName = async (req, res) => {
  * @returns {Object} The found Person or an error message if it fails.
  */
 exports.findByPnr = async (req, res) => {
-  const pnr = req.param.pnr;
+  const pnr = req.body.pnr;
 
   try {
       const data = await Person.findOne({

@@ -16,6 +16,8 @@ module.exports = app => {
     router.get("/:id", availability.findById);
 
     router.get("/person/:id", availability.findByPersonId);
+
+    router.get("/period", availability.findByPeriod);
   
     router.put("/:id", availability.update);
 

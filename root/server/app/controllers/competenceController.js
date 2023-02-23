@@ -185,7 +185,7 @@ exports.delete = async (req, res) => {
         return;
     }
 
-    const competence_id = req.body.competence_id;
+    const competence_id = req.param.competence_id;
 
     try {
         const data = await Competence.destroy({

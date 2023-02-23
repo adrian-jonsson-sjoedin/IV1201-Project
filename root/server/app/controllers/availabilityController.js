@@ -100,7 +100,7 @@ exports.findById = async (req, res) => {
  * @param {Object} res - The response object
  * @returns {Object} Returns the Availability or an error message if creation fails.
  */
-exports.findById = async (req, res) => {
+exports.findByPersonId = async (req, res) => {
   // Validate request
   if (Object.keys(req.body).length === 0) {
       res.status(400).send({
@@ -130,6 +130,46 @@ exports.findById = async (req, res) => {
               err.message || "Some error occurred while finding the Availability."
       });
   }
+};
+
+/**
+ * @function findByPeriod
+ * Retrieves all Availabilities within specified period.
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} Returns the Availabilities or an error message if creation fails.
+ */
+exports.findByPeriod = async (req, res) => {
+  // Validate request
+  if (Object.keys(req.body).length === 0) {
+      res.status(400).send({
+          message: "Content can not be empty!"
+      });
+      return;
+  }
+
+  const from_date = req.body.from_date
+  const to_date = req.body.to_date
+
+  /* try {
+      const data = await Availability.findAll({
+          where: {
+            person_id: person_id
+          }
+      });
+      if (!data) {res.send({
+          status:
+              "Not found"
+          });
+      } else {
+          res.send(data);
+      }      
+  } catch (err) {
+      res.status(500).send({
+          message:
+              err.message || "Some error occurred while finding the Availability."
+      });
+  } */
 };
 
 /**
