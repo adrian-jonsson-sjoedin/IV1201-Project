@@ -48,12 +48,12 @@ async function loginRequest(loginFormEvent, model) {
 async function createApplicantRequest(registerFormEvent, model) {
     try {
         const requestBody = {
-            name: registerFormEvent.target.name.value,
-            surname: registerFormEvent.target.surname.value,
+            name: registerFormEvent.target.name.value.trim(),
+            surname: registerFormEvent.target.surname.value.trim(),
             pnr: registerFormEvent.target.pnr.value,
-            email: registerFormEvent.target.email.value,
-            username: registerFormEvent.target.username.value,
-            password: registerFormEvent.target.password.value,
+            email: registerFormEvent.target.email.value.trim(),
+            username: registerFormEvent.target.username.value.trim(),
+            password: registerFormEvent.target.password.value.trim(),
           };
           console.log('Request body', JSON.stringify(requestBody)); // remove this before publishing app
         const response = await fetch("http://localhost:8080/api/person/", {
