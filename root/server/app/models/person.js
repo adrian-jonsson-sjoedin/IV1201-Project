@@ -1,4 +1,11 @@
 const Sequelize = require('sequelize');
+/**
+ * @module person
+ * This module exports a Sequelize model for the 'person' table in the database.
+ * @param {Object} sequelize - The Sequelize instance.
+ * @param {Object} DataTypes - A reference to the data types used by Sequelize.
+ * @returns {Object} - The Sequelize model for the 'person' table.
+ */
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('person', {
     person_id: {
