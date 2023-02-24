@@ -14,7 +14,7 @@ export default function ConfirmCompetence(props) {
 
             <p> Ticket sales experience: {experience(1)} years of experience</p>
             <p> Lotteries experience: {experience(2)} years of experience</p>
-            <p> rollerCoasterExperience experience: {experience(3)} years of experience</p>
+            <p> Roller Coaster operation experience: {experience(3)} years of experience</p>
             <div className="row px-2">
             <div className="btn-group mb-4 px-0" role="group">
                 <button onClick={ () => {props.setPage(props.page - 1)}} type="button" className="btn btn-warning ">Back</button>

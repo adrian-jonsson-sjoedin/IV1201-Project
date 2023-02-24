@@ -11,7 +11,7 @@ export default function CompetenceForm(props){
         <div className="col-lg-6">
             <h1 className="text-center mb-4">Application form</h1>
             <form onSubmit={ (e) => {props.nextPage(e)} } id="xp">
-            <div className="form-control mb-4">
+            <div className="form-control mb-4 bg-secondary">
                 <div className="form-check">
                     <input className="form-check-input" type="checkbox" id="ticketSales" name="ticketSales"/>
                     <label className="form-label" htmlFor="ticketSales">Ticket sales</label>
@@ -20,7 +20,7 @@ export default function CompetenceForm(props){
                 <input className="form-range" type="range" min="1" max="10" id="ticketSalesExperience" name="ticketSalesExperience"/>
             </div>
 
-            <div className="form-control mb-4">
+            <div className="form-control mb-4 bg-secondary">
                 <div className="form-check">
                     <input className="form-check-input" type="checkbox" id="lotteries" name="lotteries"/>
                     <label className="form-label" htmlFor="lotteries">Lotteries</label>
@@ -29,7 +29,7 @@ export default function CompetenceForm(props){
             </div>
 
             
-            <div className="form-control mb-4">
+            <div className="form-control mb-4 bg-secondary">
                 <div className="form-check">
                     <input className="form-check-input" type="checkbox" id="rollerCoasterOperation" name="rollerCoasterOperation"/>
                     <label className="form-label" htmlFor="rollerCoasterOperation">Roller coaster operation</label>
