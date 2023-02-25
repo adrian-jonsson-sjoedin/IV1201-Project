@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom"
 
+/**
+ * View that welcomes the recruiter and links them to the application listings
+ * @param {Object} props.user - the user 
+ * @returns 
+ */
 export function RecruiterHomeView(props){
     return (
         <div className="App">

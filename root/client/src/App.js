@@ -12,7 +12,6 @@ function App() {
   const [model, ] = useState(new Model());
   model.currentUser = {role_id: 2} //for testing
   return (
-    
       <Routes>
         <Route path="/"  element={<Home model={model}/>} />
         <Route element={<ApplicantRoute model={model}/>}>
@@ -22,7 +21,6 @@ function App() {
         <Route path="/register" element={<Register model={model}/>} />
         <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Routes>
-
   );
 }
 
