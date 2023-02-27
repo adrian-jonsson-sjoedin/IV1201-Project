@@ -1,31 +1,43 @@
-import { useState } from "react";
-import { redirect } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { fetchCompetenceList } from "../models/Competence";
 import { CompetenceForm, 
         AvailabilityForm, 
         ConfimData, 
         ConfirmCompetence, 
         ConfirmAvailability} from "../views";
 
-export default function Apply(props) {
+
+/**
+ * Presenter controlling the multipage application form
+ * @param {Object} model - The application model
+ * @returns view
+ */        
+export default function Apply({model}) {
     const [page, setPage] = useState(0);
     const [application, setApplication] = useState();
-    
+    const [competences, setCompetences] = useState();
+    const [error, setError] = useState();
 
-    const loader = () => {
-        const user = props.model.currentUser
-        if(!user){
-            redirect('/')
+    useEffect( () => {
+        if(competences){
+            return;
         }
-        if(user.role_id !== 1){
-            redirect('/')
-        }
-        return null 
-    }
+        fetchCompetenceList()
+        .then(res => {
+            setCompetences(res)
+        })
+        .catch(err => {
+            console.log(err)
+            setError(err)
+        })
+    }, [competences])
+    
 
     const view = () => {
         switch(page){
             case 0:
-                return <CompetenceForm nextPage={handleSubmit}/>;
+                return <CompetenceForm nextPage={handleSubmit} competenceList={competences}/>;
             case 1:
                 return <ConfirmCompetence competenceProfile={application.competence_profile} nextPage={handleSubmit} setPage={setPage} page={page}/>;
             case 2:
@@ -68,38 +80,58 @@ export default function Apply(props) {
 
     function validateCompetence(formData) {
         var competence_profile = [];
-            if(formData.ticketSales){
-                competence_profile = [{competence: 1, years_of_experience: formData.ticketSalesExperience}]
-            }
-            if(formData.lotteries){
-                competence_profile =  [...competence_profile,
-                    {competence: 2, years_of_experience: formData.lotteriesExperience}]
-            }
-            if(formData.rollerCoasterOperation){
-                competence_profile =  [...competence_profile,
-                    {competence: 3, years_of_experience: formData.rollerCoasterExperiences}]
-            }
+
+            competences.forEach(element => {
+                let id = element.competence_id
+                let years = "years_" + id
+                let months = "months_" + id
+                if(formData[String(id)]){
+                    let xp = formData[years] ? Number(formData[years]) : 0;
+                    xp += formData[months] ? Number(formData[months] * (1/12)) : 0;
+                    xp = Number(xp.toFixed(1))
+                    
+                    competence_profile = [...competence_profile,
+                    {competence: id,
+                    years_of_experience: xp}]
+                }
+            });
+
             setApplication({competence_profile})
     }
 
     function validateAvailability(formData) {
-        if(!formData.from_date || !formData.to_date){
-            alert('fill in the availability period')
-            return;
+        let from_date = new Date(formData.from_date)
+        let to_date = new Date(formData.to_date)
+        if(from_date.getTime() > to_date.getTime()){
+            alert("From date most be before the to date")
+            return
         }
 
         var availability = [formData]
         if(application.availability){
+            application.availability.forEach( ava => {
+                if((new Date(ava.from_date) < from_date && new Date(ava.to_date) > from_date) ||
+                    (new Date(ava.from_date) < to_date && new Date(ava.to_date) > to_date)){
+                    alert("Availability periods can't overlap")
+                }
+                return;
+            })
+
             availability = [...application.availability, formData]
         }
-        console.log('set ava')
+        
         setApplication({...application, availability})
         setPage(page + 1)  
     }
     
-    return (
-        <>
-            {loader() || view()}
-        </>
-    );
+    return competences ? (
+        view()
+    ) : error ? (
+        <div>
+            <h1>Something went wrong</h1>
+            <Link> Go back to the Home page</Link>
+        </div>
+    ) : (
+        <h1>...Loading</h1>
+    )
 }

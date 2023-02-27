@@ -10,7 +10,6 @@ import { ApplicantRoute } from "./routes";
 
 function App() {
   const [model, ] = useState(new Model());
-  //model.currentUser = {role_id: 2} //for testing remove before deploying
   return (
       <Routes>
         <Route path="/"  element={<Home model={model}/>} />

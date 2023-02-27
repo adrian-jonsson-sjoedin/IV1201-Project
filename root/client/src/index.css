@@ -28,7 +28,9 @@
 }
 
 .form-control {
-  color: white;
   font-size: calc(6px + 2vmin);
-  text-align: left;
+}
+
+.form-control label{
+  color: white;
 }
