@@ -11,16 +11,16 @@ export default function AvailabilityForm(props) {
         <div className="col-lg-6">
             <h1 className="text-center mb-4">Availability</h1>
 
-            <form onSubmit={ (e) => {props.nextPage(e)}}>
+            <form onSubmit={ (e) => {props.nextPage(e)}} className="form-control bg-secondary">
 
-                <div className="input-group date justify-content-center mb-4">
-                    <input type="date" name="from_date"></input>
+                <div className="input-group date justify-content-center mt-4">
+                    <input type="date" name="from_date" required></input>
                     <span className="input-group-text" id="seperator">--</span>
-                    <input type="date" name="to_date"></input>
+                    <input type="date" name="to_date" required></input>
                 </div>
 
                 <div className="row px-2">
-                <div className="btn-group mb-4 px-0" role="group">
+                <div className="btn-group my-4 px-0" role="group">
                     <button onClick={ () => {props.setPage(props.page - 1)}} type="button" className="btn btn-warning ">Back</button>
                     <button type="submit" className="btn btn-primary ">Next</button>
                 </div> 
