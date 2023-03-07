@@ -10,6 +10,7 @@ import { ApplicantRoute } from "./routes";
 
 function App() {
   const [model, ] = useState(new Model());
+  //model.currentUser = {role_id: 2}
   return (
       <Routes>
         <Route path="/"  element={<Home model={model}/>} />
@@ -18,7 +19,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login model={model}/>} />
         <Route path="/register" element={<Register model={model}/>} />
-        <Route path="*" element={<p>There's nothing here: 404!</p>} />
+        <Route path="*" element={<h1>There's nothing here: 404!</h1>} />
       </Routes>
   );
 }
