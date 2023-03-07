@@ -1,5 +1,5 @@
 const database = require("../models");
-const Applications = database.applications;
+const Application = database.application;
 const Person = database.person;
 const sequelizeOperation = database.Sequelize.Op;
 
@@ -20,7 +20,7 @@ exports.create = async (req, res) => {
     }
 
     try {
-        const data = await Applications.create(req.body.name);
+        const data = await Application.create(req.body.name);
         res.send(data);
     } catch (err) {
         res.status(500).send({
@@ -32,14 +32,14 @@ exports.create = async (req, res) => {
 
 /**
  * @function findAll
- * Finds all Applications and adds the applicants name and surname to the output.
+ * Finds all Application and adds the applicants name and surname to the output.
  * @param {Object} req - The request object
  * @param {Object} res - The response object
- * @returns {Object} The Applications or an error message if it fails.
+ * @returns {Object} The Application or an error message if it fails.
  */
 exports.findAll = async (req, res) => {
     try {
-        const data = await Applications.findAll({
+        const data = await Application.findAll({
           attributes: ['application_id', 'person_id', 'application_status'],
           include: [{
             model: Person,
@@ -66,12 +66,12 @@ exports.findAll = async (req, res) => {
  */
 exports.findById = async (req, res) => {
 
-  let application_id = JSON.stringify(req.params.application_id);
+  //let application_id = JSON.stringify(req.params.application_id);
 
   try {
-      const data = await Applications.findByPk({
+      const data = await Application.findByPk({
           where: {
-            application_id: application_id
+            application_id: req.params.application_id
           }
       });
       res.send(data);

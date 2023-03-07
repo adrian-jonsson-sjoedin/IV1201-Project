@@ -1,13 +1,13 @@
 const Sequelize = require('sequelize');
 /**
- * @module applications
- * This module exports a Sequelize model for the 'applications' table in the database.
+ * @module application
+ * This module exports a Sequelize model for the 'application' table in the database.
  * @param {Object} sequelize - The Sequelize instance.
  * @param {Object} DataTypes - A reference to the data types used by Sequelize.
- * @returns {Object} - The Sequelize model for the 'applications' table.
+ * @returns {Object} - The Sequelize model for the 'application' table.
  */
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('applications', {
+  return sequelize.define('application', {
     application_id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'applications',
+    tableName: 'application',
     timestamps: false,
     indexes: [
       {
@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "applications_person_id_fkey",
+        name: "application_person_id_fkey",
         using: "BTREE",
         fields: [
           { name: "person_id" },
