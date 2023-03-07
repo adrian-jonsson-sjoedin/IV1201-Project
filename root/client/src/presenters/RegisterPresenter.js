@@ -16,7 +16,6 @@ export default function Register(props) {
         console.log(formData) // remove before publishing
 
         const result = await createApplicantRequest(formEvent, props.model)
-        console.log('Result from createApplicantRequest: ', result);
         if (result === "OK") {
             console.log("Login Successful") // remove this before publishing app
             setRegisterInfo("OK")

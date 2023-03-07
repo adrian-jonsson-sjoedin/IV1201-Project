@@ -28,7 +28,6 @@ export default function Apply({model}) {
             setCompetences(res)
         })
         .catch(err => {
-            console.log(err)
             setError(err)
         })
     }, [competences])
@@ -127,11 +126,15 @@ export default function Apply({model}) {
     return competences ? (
         view()
     ) : error ? (
-        <div>
+        <div className="container">
+            <div className="row">
+            <h1> =( </h1>
             <h1>Something went wrong</h1>
-            <Link> Go back to the Home page</Link>
+            <Link to='/'>Go back to the Home page</Link>
+            <span>or try refreashing the page</span>
+            </div>
         </div>
     ) : (
-        <h1>...Loading</h1>
+        <div className="loader"></div>
     )
 }

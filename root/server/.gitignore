@@ -13,10 +13,11 @@ package-lock.json
 /build
 /public/*.js
 /public/*.html
-**/*Config.js*
+
 !/public/index.html
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
