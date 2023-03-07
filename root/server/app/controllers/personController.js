@@ -10,7 +10,6 @@ const sequelizeOperation = database.Sequelize.Op;
  * @returns {Object} The created person or an error message if creation fails.
  */
 exports.create = async (req, res) => {
-    // Validate request
     if (Object.keys(req.body).length === 0) {
         res.status(400).send({
             message: "Content can not be empty!"
@@ -20,7 +19,6 @@ exports.create = async (req, res) => {
 
     console.log(req);
 
-    // Create a new Person
     const newPerson = {
         name: req.body.name,
         surname: req.body.surname,
@@ -112,10 +110,11 @@ exports.findAll = async (req, res) => {
  * @returns {Object} The found Person or an error message if it fails.
  */
 exports.findById = async (req, res) => {
-    const person_id = req.param.person_id;
+
+    let person_id = JSON.stringify(req.params.person_id);
 
     try {
-        const data = await Person.findOne({
+        const data = await Person.findByPk({
             where: {
                 person_id: person_id
             }
@@ -137,13 +136,13 @@ exports.findById = async (req, res) => {
  * @returns {Object} The Persons or an error message if it fails.
  */
 exports.findAllWithName = async (req, res) => {
-    // Validate request
-    if (Object.keys(req.body).length === 0) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-        return;
-    }
+
+  /* const title = req.query.title;
+  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+
+  Tutorial.findAll({ where: condition })
+    .then(data => {
+      res.send(data); */
 
     const name = req.body.name;
     const surname = req.body.surname;

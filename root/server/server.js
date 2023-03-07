@@ -20,6 +20,7 @@ database.sequelize.sync().then(() => {
   }
 );
 
+require("./app/routes/applicationsRoute")(app);
 require("./app/routes/availabilityRoute")(app);
 require("./app/routes/competenceRoute")(app);
 require("./app/routes/competence_profileRoute")(app);

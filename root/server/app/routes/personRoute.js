@@ -15,15 +15,15 @@ module.exports = app => {
 
     router.get("/", person.findAll);
 
-    router.get("/:id", person.findById);
+    router.get("/:person_id", person.findById);
   
     router.get("/names", person.findAllWithName);
 
-    router.get("/pnr", person.findByPnr);
+    router.get("/pnr/:pnr", person.findByPnr);
 
-    router.put("/:id", person.update);
+    router.put("/:person_id", person.update);
 
-    router.delete("/:id", person.delete);
+    router.delete("/:person_id", person.delete);
   
     app.use('/api/person', router);
 };
