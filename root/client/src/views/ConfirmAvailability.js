@@ -18,7 +18,7 @@ export default function ConfirmAvailability(props) {
             <div className="btn-group mb-4 px-0" role="group">
                 <button onClick={ () => {props.availability.pop(); props.setPage(props.page - 1)}} type="button" className="btn btn-warning ">Back</button>
                 <button onClick={ () => {props.setPage(props.page - 1)}}type="button" className="btn btn-info ">Add availability period</button>
-                <button onClick={ () => {props.nextPage()}}type="button" className="btn btn-primary ">Next</button>
+                <button onClick={ () => {props.nextPage()}}type="button" className="btn btn-primary ">Confirm</button>
             </div>    
             </div> 
             </div>
