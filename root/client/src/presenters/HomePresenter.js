@@ -18,11 +18,11 @@ export default function Home(props) {
 
     function HomeView() {
         console.log(currentUser)
-        if(currentUser.role_id === 1){
+        if(currentUser.role_id === 2){
             console.log(currentUser)
             return <ApplicantHomeView user={currentUser}/>
         }
-        if(currentUser.role_id === 2){
+        if(currentUser.role_id === 1){
             return <RecruiterHomeView user={currentUser} />
         }
     }

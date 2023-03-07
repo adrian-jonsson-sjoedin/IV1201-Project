@@ -10,17 +10,17 @@ import { ApplicantRoute } from "./routes";
 
 function App() {
   const [model, ] = useState(new Model());
-   //for testing
+  //model.currentUser = {role_id: 2}
   return (
-    <Routes>
-      <Route path="/"  element={<Home model={model}/>} />
-      <Route element={<ApplicantRoute model={model}/>}>
-        <Route path="/apply" element={<Apply model={model}/>}/>
-      </Route>
-      <Route path="/login" element={<Login model={model}/>} />
-      <Route path="/register" element={<Register model={model}/>} />
-      <Route path="*" element={<p>There's nothing here: 404!</p>} />
-    </Routes>
+      <Routes>
+        <Route path="/"  element={<Home model={model}/>} />
+        <Route element={<ApplicantRoute model={model}/>}>
+          <Route path="/apply" element={<Apply model={model}/>}/>
+        </Route>
+        <Route path="/login" element={<Login model={model}/>} />
+        <Route path="/register" element={<Register model={model}/>} />
+        <Route path="*" element={<h1>There's nothing here: 404!</h1>} />
+      </Routes>
   );
 }
 
