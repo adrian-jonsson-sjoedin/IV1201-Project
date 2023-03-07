@@ -7,7 +7,7 @@ sequelize-auto -o "./app/models" -d iv1201_projectdb -h localhost -u root -p 330
  * 
  */
 const dbConfig = require("../config/dbConfig.js");
-console.log("trying to connect as " + process.env);
+
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,

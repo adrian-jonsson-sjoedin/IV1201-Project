@@ -13,7 +13,7 @@ package-lock.json
 /build
 /public/*.js
 /public/*.html
-**/*Config.js*
+
 !/public/index.html
 
 # misc
