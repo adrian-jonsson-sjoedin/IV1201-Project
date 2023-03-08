@@ -8,7 +8,8 @@ require('dotenv').config();
 
 const cors = require("cors");
 const corsOptions = {
-  origin: ["http://localhost:8081", " https://iv1201.netlify.app"]
+  // origin: ["http://localhost:8081", " https://iv1201.netlify.app"]
+  origin: " https://iv1201.netlify.app"
 };
 
 app.use(cors(corsOptions));
