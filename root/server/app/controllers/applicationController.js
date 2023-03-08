@@ -1,7 +1,9 @@
 const database = require("../models");
 const Application = database.application;
 const Person = database.person;
-const sequelizeOperation = database.Sequelize.Op;
+
+Application.belongsTo(Person, { as: "person", foreignKey: "person_id"});
+Person.hasMany(Application, { as: "applications", foreignKey: "person_id"});
 
 /**
  * @function create
@@ -39,12 +41,12 @@ exports.create = async (req, res) => {
  */
 exports.findAll = async (req, res) => {
     try {
+        console.log("Hello");
         const data = await Application.findAll({
-          attributes: ['application_id', 'person_id', 'application_status'],
           include: [{
             model: Person,
             as: 'person',
-            attributes: ['name', 'surname']
+            attributes: ["name", "surname"]
           }]
         });
         res.send(data);

@@ -21,6 +21,8 @@ database.sequelize.sync().then(() => {
   }
 );
 
+//app.use(database);
+
 require("./app/routes/applicationRoute")(app);
 require("./app/routes/availabilityRoute")(app);
 require("./app/routes/competenceRoute")(app);
