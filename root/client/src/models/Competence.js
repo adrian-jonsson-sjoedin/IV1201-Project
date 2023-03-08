@@ -9,7 +9,8 @@ import { capitalizeFirstLetter } from "../util/util";
  */
 async function fetchCompetenceList() {
     try {
-        const response = await fetch("http://localhost:8080/api/competence/");
+        // const response = await fetch("http://localhost:8080/api/competence/");
+        const response = await fetch("https://iv1201-server.up.railway.app/api/competence/");
         const responseData = await response.json();
         console.log("Response data for fetching the list of competences: ", responseData);// remove this before publishing app
         if (responseData.status !== 500) {

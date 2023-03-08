@@ -9,7 +9,8 @@ import { capitalizeFirstLetter } from "../util/util";
  */
 async function fetchAllApplications() {
     try {
-        const response = await fetch("http://localhost:8080/api/application");
+        // const response = await fetch("http://localhost:8080/api/application");
+        const response = await fetch("https://iv1201-server.up.railway.app/api/application");
         const responseData = await response.json();
         console.log("Response data for fetching the all applications: ", responseData);// remove this before publishing app
         if (responseData.status !== 500) {
