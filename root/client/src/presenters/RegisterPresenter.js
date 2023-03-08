@@ -17,7 +17,6 @@ export default function Register(props) {
         try{
             const result = await createApplicantRequest(formEvent, props.model)
             if (result === "OK") {
-                console.log("Login Successful") // remove this before publishing app
                 setRegisterInfo("OK")
             }else {
                 setRegisterInfo("Register unsuccessful")

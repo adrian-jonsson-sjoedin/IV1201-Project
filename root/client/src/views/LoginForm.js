@@ -7,6 +7,18 @@ import { Link } from 'react-router-dom'
  */
 export default function LoginForm(props){
 
+    function button(){
+        if(props.isLoading){
+            return(
+                <button className="btn btn-primary" type="button" disabled>
+                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+                </button>
+            )
+        }
+        return <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
+    }
+
     return (
         <div className="container">
             <div className="row justify-content-center my-5">
@@ -29,7 +41,8 @@ export default function LoginForm(props){
                 </div>
                 
                 <div className="row px-2">
-                    <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
+                    
+                    {button()}
                 </div>
 
                 <div className="text-center">

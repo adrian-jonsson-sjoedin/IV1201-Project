@@ -10,12 +10,13 @@ import { loginRequest } from "../models/Person";
 export default function Login(props) {
     const navigate = useNavigate();
     const [loginInfo, setLoginInfo] = useState("");
+    const [isLoading, setIsLoading] = useState();
 
     async function login(formEvent) {
+        setIsLoading({})
         try {
             const result = await loginRequest(formEvent, props.model)
             if (result === "OK") {
-                console.log("Login Successful") // remove this before publishing app
                 setLoginInfo("Login Successful")
                 navigate("/")
             }else {
@@ -25,9 +26,10 @@ export default function Login(props) {
         catch (err){
             setLoginInfo("Server connection error")
         }
+        setIsLoading(null)
     }
 
     return (
-        <LoginForm submitLoginRequest={login} loginInfo={loginInfo} />
+        <LoginForm submitLoginRequest={login} loginInfo={loginInfo} isLoading={isLoading}/>
     );
 }
