@@ -5,7 +5,8 @@ import Login  from "./presenters/LoginPresenter";
 import Register from "./presenters/RegisterPresenter";
 import Model from "./models/Model";
 import Apply from "./presenters/ApplyPresenter";
-import { ApplicantRoute } from "./routes";
+import { ApplicantRoute, RecruiterRoute } from "./routes";
+import Applications from "./presenters/ApplicationPresenter";
 
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
         <Route path="/"  element={<Home model={model}/>} />
         <Route element={<ApplicantRoute model={model}/>}>
           <Route path="/apply" element={<Apply model={model}/>}/>
+        </Route>
+        <Route element={<RecruiterRoute model={model}/>}>
+          <Route path="/applications" element={<Applications/>}/>
         </Route>
         <Route path="/login" element={<Login model={model}/>} />
         <Route path="/register" element={<Register model={model}/>} />

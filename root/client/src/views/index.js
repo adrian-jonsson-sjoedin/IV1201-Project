@@ -23,3 +23,13 @@ export { default as RegisterSuccess} from './RegisterSuccess';
  */
 export { ApplicantHomeView} from './ApplicantHomeView'
 export { RecruiterHomeView} from './RecruiterHomeView'
+
+/**
+ * View for listing applicaitons
+ */
+export { ListApplications } from './ListApplications'
+
+/**
+ * Errorpage
+ */
+export { ErrorView } from './ErrorView'

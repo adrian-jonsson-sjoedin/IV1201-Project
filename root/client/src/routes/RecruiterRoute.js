@@ -1,10 +1,12 @@
 import { Outlet, Navigate} from "react-router-dom";
 
-export const RecruiterRoute = ({currentUser}) => {
-    if(!currentUser){
+export const RecruiterRoute = ({model}) => {
+    if(!model.currentUser){
+        console.log("redirecting to login")
         return  <Navigate to="/login" replace />
     }
-    if(currentUser.role_id !== 1){
+    if(model.currentUser.role_id !== 1){
+        console.log("redirecting to home")
         return  <Navigate to="/" replace />
     }
 

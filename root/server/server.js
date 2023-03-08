@@ -13,8 +13,7 @@ require('dotenv').config();
  */
 const cors = require("cors");
 const corsOptions = {
-  // origin: "http://localhost:8081"     // for local development
-  origin: process.env.ORIGIN  // for the remote server
+  origin: process.env.ORIGIN  
 };
 app.use(cors(corsOptions));
 app.use(express.json());

@@ -11,7 +11,7 @@ export function RecruiterHomeView(props){
             <header className="App-header">
                 <h1>Recruiter page</h1>
                 <p>Welcome {!props.user ? "" : props.user.name + " " + props.user.surname}, you are now logged in</p>
-                <Link to="/apply">View applications</Link>
+                <Link to="/applications">View applications</Link>
             </header>
         </div>
     )

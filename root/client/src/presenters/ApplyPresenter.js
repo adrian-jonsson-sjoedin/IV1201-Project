@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { fetchCompetenceList } from "../models/Competence";
 import { CompetenceForm, 
         AvailabilityForm, 
         ConfimData, 
         ConfirmCompetence, 
-        ConfirmAvailability} from "../views";
+        ConfirmAvailability,
+        ErrorView} from "../views";
+
 
 
 /**
@@ -126,14 +127,7 @@ export default function Apply({model}) {
     return competences ? (
         view()
     ) : error ? (
-        <div className="container">
-            <div className="row">
-            <h1> =( </h1>
-            <h1>Something went wrong</h1>
-            <Link to='/'>Go back to the Home page</Link>
-            <span>or try refreashing the page</span>
-            </div>
-        </div>
+        <ErrorView />
     ) : (
         <div className="loader"></div>
     )
