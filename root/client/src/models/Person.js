@@ -1,3 +1,5 @@
+import { SERVER_URL } from "../util/domain";
+
 /**
  * Sends a login request to the server and updates the model with the returned 
  * user if login succeed.
@@ -11,7 +13,7 @@
 async function loginRequest(loginFormEvent, model) {
     try {
         // const response = await fetch("http://localhost:8080/api/person/login", {
-            const response = await fetch("https://iv1201-server.up.railway.app/api/person/login", {
+            const response = await fetch(SERVER_URL + "/api/person/login", {
             method: "POST",
             body: JSON.stringify({
                 username: loginFormEvent.target.username.value,
@@ -20,17 +22,14 @@ async function loginRequest(loginFormEvent, model) {
             headers: { "Content-type": "application/json; charset=UTF-8" },
         });
         const responseData = await response.json();
-        console.log('Response data: ', responseData); // remove this before publishing app
         if (responseData.status !== "Failed") {
             console.log('Setting current user: ', responseData); // remove this before publishing app
             model.updateCurrentUser(responseData);
-            console.log('Current user: ', model.currentUser); // remove this before publishing app
             return "OK";
         } else {
             return "Failed";
         }
     } catch (error) {
-        console.error(error);
         throw new Error("An error occurred during the login request");
     }
 }
@@ -56,25 +55,20 @@ async function createApplicantRequest(registerFormEvent, model) {
             username: registerFormEvent.target.username.value.trim(),
             password: registerFormEvent.target.password.value.trim(),
           };
-          console.log('Request body', JSON.stringify(requestBody)); // remove this before publishing app
         // const response = await fetch("http://localhost:8080/api/person/", {
-            const response = await fetch("https://iv1201-server.up.railway.app/api/person/", {
+            const response = await fetch(SERVER_URL + "/api/person/", {
             method: "POST",
             body: JSON.stringify(requestBody),
             headers: { "Content-type": "application/json; charset=UTF-8" },
         });
         const responseData = await response.json();
-        console.log('Response data: ', responseData); // remove this before publishing app
         if (responseData.status !== "Failed") {
-            console.log('Setting current user: ', responseData); // remove this before publishing app
             model.updateCurrentUser(responseData);
-            console.log('Current user: ', model.currentUser); // remove this before publishing app
             return "OK";
         } else {
             return "Failed";
         }
     } catch (error) {
-        console.error(error);
         throw new Error("An error occurred with the create applicant request.");
     }
 }
