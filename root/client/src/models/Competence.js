@@ -10,7 +10,6 @@ import { capitalizeFirstLetter } from "../util/util";
  */
 async function fetchCompetenceList() {
     try {
-        // const response = await fetch("http://localhost:8080/api/competence/");
         const response = await fetch(SERVER_URL + "/api/competence/");
         const responseData = await response.json();
         if (responseData.status !== 500) {

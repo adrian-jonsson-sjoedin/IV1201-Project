@@ -12,7 +12,6 @@ import { SERVER_URL } from "../util/domain";
  */
 async function loginRequest(loginFormEvent, model) {
     try {
-        // const response = await fetch("http://localhost:8080/api/person/login", {
             const response = await fetch(SERVER_URL + "/api/person/login", {
             method: "POST",
             body: JSON.stringify({
