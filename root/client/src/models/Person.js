@@ -10,7 +10,8 @@
  */
 async function loginRequest(loginFormEvent, model) {
     try {
-        const response = await fetch("http://localhost:8080/api/person/login", {
+        // const response = await fetch("http://localhost:8080/api/person/login", {
+            const response = await fetch("https://iv1201-server.up.railway.app/api/person/login", {
             method: "POST",
             body: JSON.stringify({
                 username: loginFormEvent.target.username.value,
@@ -56,7 +57,8 @@ async function createApplicantRequest(registerFormEvent, model) {
             password: registerFormEvent.target.password.value.trim(),
           };
           console.log('Request body', JSON.stringify(requestBody)); // remove this before publishing app
-        const response = await fetch("http://localhost:8080/api/person/", {
+        // const response = await fetch("http://localhost:8080/api/person/", {
+            const response = await fetch("https://iv1201-server.up.railway.app/api/person/", {
             method: "POST",
             body: JSON.stringify(requestBody),
             headers: { "Content-type": "application/json; charset=UTF-8" },
