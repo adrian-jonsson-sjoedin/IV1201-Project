@@ -14,7 +14,7 @@ require('dotenv').config();
 const cors = require("cors");
 const corsOptions = {
   // origin: "http://localhost:8081"     // for local development
-  origin: " https://iv1201.netlify.app"  // for the remote server
+  origin: process.env.ORIGIN  // for the remote server
 };
 app.use(cors(corsOptions));
 app.use(express.json());
