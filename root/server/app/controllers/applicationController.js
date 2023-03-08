@@ -2,9 +2,6 @@ const database = require("../models");
 const Application = database.application;
 const Person = database.person;
 
-Application.belongsTo(Person, { as: "person", foreignKey: "person_id"});
-Person.hasMany(Application, { as: "applications", foreignKey: "person_id"});
-
 /**
  * @function create
  * Creates a new Application.
@@ -67,15 +64,9 @@ exports.findAll = async (req, res) => {
  * @returns {Object} The found Application or an error message if it fails.
  */
 exports.findById = async (req, res) => {
-
-  //let application_id = JSON.stringify(req.params.application_id);
-
+  const application_id = req.params.application_id;
   try {
-      const data = await Application.findByPk({
-          where: {
-            application_id: req.params.application_id
-          }
-      });
+      const data = await Application.findOne(application_id);
       res.send(data);
   } catch (err) {
       res.status(500).send({
