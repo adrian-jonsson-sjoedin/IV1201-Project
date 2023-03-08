@@ -24,14 +24,14 @@ function initModels(sequelize) {
   competence.hasMany(competence_profile, { as: "competence_profiles", foreignKey: "competence_id"});
 
   application.belongsTo(person, { as: "person", foreignKey: "person_id"});
-  person.hasMany(application, { as: "application", foreignKey: "person_id"});
-  
+  person.hasMany(application, { as: "applications", foreignKey: "person_id"});
+
   availability.belongsTo(person, { as: "person", foreignKey: "person_id"});
   person.hasMany(availability, { as: "availabilities", foreignKey: "person_id"});
 
   competence_profile.belongsTo(person, { as: "person", foreignKey: "person_id"});
   person.hasMany(competence_profile, { as: "competence_profiles", foreignKey: "person_id"});
-  
+
   person.belongsTo(role, { as: "role", foreignKey: "role_id"});
   role.hasMany(person, { as: "people", foreignKey: "role_id"});
 
