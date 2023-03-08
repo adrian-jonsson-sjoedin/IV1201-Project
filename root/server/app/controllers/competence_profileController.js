@@ -62,18 +62,11 @@ exports.findAll = async (req, res) => {
  * @returns {Object} Returns the Competence_profile or an error message if creation fails.
  */
 exports.findById = async (req, res) => {
-    // Validate request
-    if (Object.keys(req.body).length === 0) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-        return;
-    }
 
-    const competence_profile_id = req.body.competence_profile_id
+    const competence_profile_id = req.params.competence_profile_id
 
     try {
-        const data = await Competence_profile.findOne({
+        const data = await Competence_profile.findByPk({
             where: {
                 competence_profile_id: competence_profile_id
             }
@@ -101,15 +94,8 @@ exports.findById = async (req, res) => {
  * @returns {Object} Returns the Competence_profile or an error message if creation fails.
  */
 exports.findByPersonId = async (req, res) => {
-  // Validate request
-  if (Object.keys(req.body).length === 0) {
-      res.status(400).send({
-          message: "Content can not be empty!"
-      });
-      return;
-  }
 
-  const person_id = req.body.person_id
+  const person_id = req.params.person_id
 
   try {
       const data = await Competence_profile.findAll({
@@ -140,15 +126,8 @@ exports.findByPersonId = async (req, res) => {
  * @returns {Object} Returns the Competence_profile or an error message if creation fails.
  */
 exports.findByCompetenceId = async (req, res) => {
-  // Validate request
-  if (Object.keys(req.body).length === 0) {
-      res.status(400).send({
-          message: "Content can not be empty!"
-      });
-      return;
-  }
 
-  const competence_id = req.body.competence_id
+  const competence_id = req.params.competence_id
 
   try {
       const data = await Competence_profile.findAll({
@@ -179,16 +158,9 @@ exports.findByCompetenceId = async (req, res) => {
  * @returns {Object} Returns the Competence_profile or an error message if creation fails.
  */
 exports.findByBothId = async (req, res) => {
-  // Validate request
-  if (Object.keys(req.body).length === 0) {
-      res.status(400).send({
-          message: "Content can not be empty!"
-      });
-      return;
-  }
 
-  const person_id = req.body.person_id
-  const competence_id = req.body.competence_id
+  const person_id = req.params.person_id
+  const competence_id = req.params.competence_id
 
   try {
       const data = await Competence_profile.findOne({
@@ -265,15 +237,8 @@ exports.update = async (req, res) => {
  * @returns {Object} A message indicating the Competence_profile was deleted successfully or an error message if delete fails.
  */
 exports.delete = async (req, res) => {
-    // Validate request
-    if (Object.keys(req.body).length === 0) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-        return;
-    }
 
-    const competence_profile_id = req.body.competence_profile_id;
+    const competence_profile_id = req.params.competence_profile_id;
 
     try {
         const data = await Competence_profile.destroy({

@@ -31,6 +31,7 @@ database.sequelize = sequelize;
 const init = require("./init-models.js");
 init.initModels(sequelize);
 
+database.application = require("./application.js")(sequelize, Sequelize);
 database.availability = require("./availability.js")(sequelize, Sequelize);
 database.competence = require("./competence.js")(sequelize, Sequelize);
 database.competence_profile = require("./competence_profile.js")(sequelize, Sequelize);
