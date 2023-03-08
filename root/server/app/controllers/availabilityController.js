@@ -62,18 +62,11 @@ exports.findAll = async (req, res) => {
  * @returns {Object} Returns the Availability or an error message if creation fails.
  */
 exports.findById = async (req, res) => {
-  // Validate request
-  if (Object.keys(req.body).length === 0) {
-      res.status(400).send({
-          message: "Content can not be empty!"
-      });
-      return;
-  }
 
-  const availability_id = req.body.availability_id
+  const availability_id = req.param.availability_id
 
   try {
-      const data = await Availability.findOne({
+      const data = await Availability.findByPk({
           where: {
               availability_id: availability_id
           }
@@ -101,15 +94,8 @@ exports.findById = async (req, res) => {
  * @returns {Object} Returns the Availability or an error message if creation fails.
  */
 exports.findByPersonId = async (req, res) => {
-  // Validate request
-  if (Object.keys(req.body).length === 0) {
-      res.status(400).send({
-          message: "Content can not be empty!"
-      });
-      return;
-  }
 
-  const person_id = req.body.person_id
+  const person_id = req.params.person_id
 
   try {
       const data = await Availability.findOne({

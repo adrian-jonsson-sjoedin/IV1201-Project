@@ -56,18 +56,11 @@ exports.findAll = async (req, res) => {
  * @returns {Object} Returns the Competence or an error message if creation fails.
  */
 exports.findById = async (req, res) => {
-  // Validate request
-  if (Object.keys(req.body).length === 0) {
-      res.status(400).send({
-          message: "Content can not be empty!"
-      });
-      return;
-  }
 
-  const competence_id = req.body.competence_id
+  const competence_id = req.params.competence_id
 
   try {
-      const data = await Competence.findOne({
+      const data = await Competence.findByPk({
           where: {
               competence_id: competence_id
           }
@@ -177,15 +170,8 @@ exports.update = async (req, res) => {
  * @returns {Object} A message indicating the Competence was deleted successfully or an error message if delete fails.
  */
 exports.delete = async (req, res) => {
-    // Validate request
-    if (Object.keys(req.body).length === 0) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-        return;
-    }
 
-    const competence_id = req.param.competence_id;
+    const competence_id = req.params.competence_id;
 
     try {
         const data = await Competence.destroy({

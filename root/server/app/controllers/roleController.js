@@ -99,15 +99,8 @@ exports.update = async (req, res) => {
  * @returns {Object} A message indicating the Role was deleted successfully or an error message if delete fails.
  */
 exports.delete = async (req, res) => {
-    // Validate request
-    if (Object.keys(req.body).length === 0) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-        return;
-    }
 
-    const role_id = req.body.role_id;
+    const role_id = req.params.role_id;
 
     try {
         const data = await Role.destroy({
