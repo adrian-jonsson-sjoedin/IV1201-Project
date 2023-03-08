@@ -13,7 +13,7 @@ module.exports = app => {
 
   router.get("/", application.findAll);
 
-  router.get("/:id", application.findById);
+  router.get("/:application_id", application.findById);
 
   app.use('/api/application', router);
 };

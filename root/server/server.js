@@ -1,29 +1,38 @@
 /**
  * @file server.js
- * Express server setup and configuration. 
+ * Express server setup and configuration, connects to the database, and 
+ * defines the routes for the application.
  */
 const express = require("express");
 const app = express();
 require('dotenv').config();
 
+/**
+ * CORS options for the application where we specify
+ * the allowed origin for CORS requests.
+ */
 const cors = require("cors");
 const corsOptions = {
   // origin: "http://localhost:8081"     // for local development
   origin: " https://iv1201.netlify.app"  // for the remote server
 };
-
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+/**
+ * Synchronizes the Sequelize models with the database and logs a message 
+ * to the console when the connection is successful.
+ */
 const database = require("./app/models");
 database.sequelize.sync().then(() => {
     console.log("Database has been connected.");
   }
 );
 
-//app.use(database);
-
+/**
+ * Imports the route functions and passes the Express app to them.
+ */
 require("./app/routes/applicationRoute")(app);
 require("./app/routes/availabilityRoute")(app);
 require("./app/routes/competenceRoute")(app);
