@@ -38,6 +38,7 @@ require("./app/routes/competenceRoute")(app);
 require("./app/routes/competence_profileRoute")(app);
 require("./app/routes/personRoute")(app);
 require("./app/routes/roleRoute")(app);
+require("./app/routes/authRoute")(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

@@ -1,3 +1,6 @@
+const auth = require('./auth.js')
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const database = require("../models");
 const Person = database.person;
 const sequelizeOperation = database.Sequelize.Op;
@@ -73,7 +76,8 @@ exports.login = async (req, res) => {
                 "Failed"
             });
         } else {
-            res.send(data);
+            const token = jwt.sign(data.username, process.env.TOKEN_HASH)
+            res.send({...data.dataValues, token});
         }      
     } catch (err) {
         res.status(500).send({

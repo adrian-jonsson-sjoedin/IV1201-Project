@@ -7,11 +7,13 @@ export function ListApplications({applications}){
         <div className="col-lg-6">
         
         <table>
-        {applications.map( (appli) => {
+        <tbody>
+            {applications.map( (appli) => {
                 return(
-                    <tr key={appli.surname}><td>{appli.name}</td><td>{appli.surname}</td><td>{appli.status}</td></tr>
+                    <tr key={appli.id}><td>{appli.name}</td><td>{appli.surname}</td><td>{appli.status}</td></tr>
                 )
             })}
+        </tbody>
         </table>
 
         </div> 

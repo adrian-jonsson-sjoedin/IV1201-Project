@@ -6,6 +6,7 @@
  */
 module.exports = app => {
     const person = require("../controllers/personController.js");
+    const auth = require('../controllers/auth.js')
   
     var router = require("express").Router();
     
@@ -13,17 +14,17 @@ module.exports = app => {
 
     router.post("/login", person.login);
 
-    router.get("/", person.findAll);
+    router.get("/", auth.verifyRecruiter, person.findAll);
 
-    router.get("/:person_id", person.findById);
+    router.get("/:person_id", auth.verifyRecruiter, person.findById);
   
-    router.get("/names", person.findAllWithName);
+    router.get("/names", auth.verifyRecruiter, person.findAllWithName);
 
-    router.get("/pnr/:pnr", person.findByPnr);
+    router.get("/pnr/:pnr", auth.verifyRecruiter, person.findByPnr);
 
-    router.put("/:person_id", person.update);
+    router.put("/:person_id", auth.verifyRecruiter, person.update);
 
-    router.delete("/:person_id", person.delete);
+    router.delete("/:person_id", auth.verifyRecruiter, person.delete);
   
     app.use('/api/person', router);
 };

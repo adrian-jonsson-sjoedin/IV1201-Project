@@ -19,7 +19,7 @@ function App() {
           <Route path="/apply" element={<Apply model={model}/>}/>
         </Route>
         <Route element={<RecruiterRoute model={model}/>}>
-          <Route path="/applications" element={<Applications/>}/>
+          <Route path="/applications" element={<Applications model={model} />}/>
         </Route>
         <Route path="/login" element={<Login model={model}/>} />
         <Route path="/register" element={<Register model={model}/>} />

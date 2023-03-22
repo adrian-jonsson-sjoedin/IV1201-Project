@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { fetchCompetenceList } from "../models/Competence";
 import { CompetenceForm, 
         AvailabilityForm, 
-        ConfimData, 
         ConfirmCompetence, 
         ConfirmAvailability,
         ErrorView} from "../views";
@@ -21,10 +20,9 @@ export default function Apply({model}) {
     const [error, setError] = useState();
 
     useEffect( () => {
-        if(competences){
-            return;
-        }
-        fetchCompetenceList()
+        if(competences){return;}
+
+        fetchCompetenceList(model.currentUser.token)
         .then(res => {
             setCompetences(res)
         })
