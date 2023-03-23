@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { SERVER_URL } from "../util/domain";
 import { ErrorView } from "../views";
@@ -8,8 +8,8 @@ export const RecruiterRoute = ({model}) => {
     const [error, setError] = useState();
     const navigate = useNavigate();
     
-    useEffect( () => {
-        if(isAuthorized){return}
+    
+    if(!isAuthorized){
         const token = model.currentUser && model.currentUser.token
         fetch(SERVER_URL + '/api/auth/recruiter', {
             method: 'GET',
@@ -28,7 +28,7 @@ export const RecruiterRoute = ({model}) => {
         .catch(err => {
             setError(err)
         })
-    })
+    }
 
     return isAuthorized ? (
         <Outlet />

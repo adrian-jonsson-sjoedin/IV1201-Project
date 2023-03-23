@@ -10,7 +10,7 @@ exports.verify = (req, res, next) => {
 
     if(token == null) return res.sendStatus(401)
 
-    jwt.verify(token, process.env.TOKEN_HASH, (err, username) => {
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, username) => {
         if(err) return res.sendStatus(403)
         req.username = username
         next()
@@ -23,7 +23,7 @@ exports.verifyRecruiter = async (req, res, next) => {
 
     if(token == null) {return res.sendStatus(401)}
 
-    jwt.verify(token, process.env.TOKEN_HASH, async (err, username) => {
+    jwt.verify(token, process.env.TOKEN_SECRET, async (err, username) => {
         if(err) {return res.sendStatus(403)}
         try {
             const user = await Person.findOne({
@@ -46,7 +46,7 @@ exports.verifyApplicant = async (req, res, next) => {
 
     if(token == null) {return res.sendStatus(401)}
 
-    jwt.verify(token, process.env.TOKEN_HASH, async (err, username) => {
+    jwt.verify(token, process.env.TOKEN_SECRET, async (err, username) => {
         if(err) {return res.sendStatus(403)}
         try {
             const user = await Person.findOne({
