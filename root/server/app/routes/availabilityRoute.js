@@ -6,6 +6,7 @@
  */
 module.exports = app => {
     const availability = require("../controllers/availabilityController.js");
+    const auth = require('../controllers/auth.js')
   
     var router = require("express").Router();
 
@@ -23,5 +24,5 @@ module.exports = app => {
 
     router.delete("/:id", availability.delete);
   
-    app.use('/api/availability', router);
+    app.use('/api/availability', auth.verifyRecruiter, router);
 };

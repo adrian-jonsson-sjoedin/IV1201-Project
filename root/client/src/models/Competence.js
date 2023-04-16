@@ -8,9 +8,14 @@ import { capitalizeFirstLetter } from "../util/util";
  * @returns {Promise<Array<{competence_id: number, name: string}>>|string} An array of mapped competences or a string "Failed".
  * @throws {Error} If an error occurs during the network request.
  */
-async function fetchCompetenceList() {
+async function fetchCompetenceList(token) {
     try {
-        const response = await fetch(SERVER_URL + "/api/competence/");
+        const response = await fetch(SERVER_URL + "/api/competence/", {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         const responseData = await response.json();
         if (responseData.status !== 500) {
             const competences = responseData.map(res => ({

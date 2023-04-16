@@ -6,6 +6,7 @@
  */
 module.exports = app => {
     const role = require("../controllers/roleController.js");
+    const auth = require('../controllers/auth.js')
   
     var router = require("express").Router();
 
@@ -17,5 +18,5 @@ module.exports = app => {
 
     router.delete("/:id", role.delete);
   
-    app.use('/api/role', router);
+    app.use('/api/role', auth.verifyRecruiter, router);
 };

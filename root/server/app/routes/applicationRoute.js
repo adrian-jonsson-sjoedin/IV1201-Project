@@ -6,14 +6,15 @@
  */
 module.exports = app => {
   const  application = require("../controllers/applicationController.js");
+  const auth = require('../controllers/auth.js')
 
   var router = require("express").Router();
 
-  router.post("/", application.create);
+  router.post("/", auth.verifyApplicant, application.create);
 
-  router.get("/", application.findAll);
+  router.get("/", auth.verifyRecruiter, application.findAll);
 
-  router.get("/:application_id", application.findById);
+  router.get("/:application_id", auth.verifyRecruiter, application.findById);
 
   app.use('/api/application', router);
 };

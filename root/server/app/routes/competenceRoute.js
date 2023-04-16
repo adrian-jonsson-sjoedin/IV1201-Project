@@ -6,6 +6,7 @@
  */
 module.exports = app => {
     const competence = require("../controllers/competenceController.js");
+    const auth = require('../controllers/auth.js')
   
     var router = require("express").Router();
 
@@ -21,5 +22,5 @@ module.exports = app => {
 
     router.delete("/:id", competence.delete);
   
-    app.use('/api/competence', router);
+    app.use('/api/competence', auth.verify, router);
 };

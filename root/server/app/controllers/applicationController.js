@@ -38,7 +38,7 @@ exports.create = async (req, res) => {
  */
 exports.findAll = async (req, res) => {
     try {
-        console.log("Hello");
+        
         const data = await Application.findAll({
           include: [{
             model: Person,

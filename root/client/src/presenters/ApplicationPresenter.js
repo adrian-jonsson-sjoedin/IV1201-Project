@@ -2,7 +2,7 @@ import { ErrorView, ListApplications } from "../views"
 import { fetchAllApplications } from "../models/Applications"
 import { useEffect, useState } from "react"
 
-export default function Applications(){
+export default function Applications({model}){
     const [isLoading, setIsLoading] = useState()
     const [error, setError] = useState()
     const [applications, setApplications] = useState()
@@ -10,7 +10,7 @@ export default function Applications(){
     useEffect( () => {
         if(isLoading || applications){return}
         setIsLoading("loading")
-        fetchAllApplications()
+        fetchAllApplications(model.currentUser.token)
         .then( res => {
             setApplications(res)
             setIsLoading(null)
