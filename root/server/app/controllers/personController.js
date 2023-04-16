@@ -76,7 +76,7 @@ exports.login = async (req, res) => {
                 "Failed"
             });
         } else {
-            const token = jwt.sign(data.username, process.env.TOKEN_HASH)
+            const token = jwt.sign(data.username, process.env.TOKEN_SECRET)
             res.send({...data.dataValues, token});
         }      
     } catch (err) {
